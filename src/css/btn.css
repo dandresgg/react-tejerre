@@ -1,0 +1,23 @@
+.btn-machine {
+  border: 10px inset #282c34;
+  padding: 2px 4px;
+  background-color: gray;
+  width: 60%;
+}
+.btn-machine:hover{
+  background-color: aquamarine;
+  color: black;
+  cursor: pointer;
+}
+
+.mt-btn {
+  margin-top: 1rem;
+}
+
+.p-btn {
+  padding: 1rem;
+}
+
+.btn-bg-options {
+  padding: 1rem;
+}
