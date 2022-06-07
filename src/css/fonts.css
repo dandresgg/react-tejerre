@@ -1,0 +1,27 @@
+.bold {
+  font-weight: bolder;
+}
+.gray {
+  color: gray;
+}
+.white {
+  color: white;
+}
+.orange {
+  color: orange;
+}
+.gray {
+  color: gray;
+}
+.l-gray {
+  color: lightgray;
+}
+.l-size{
+  font-size: x-large;
+}
+.ll-size {
+  font-size: xx-large;
+}
+.d-flex {
+  display: flex;
+}
