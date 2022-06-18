@@ -9,10 +9,14 @@ export const SingUp = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [token, setToken] = useCookies(['token']);
     const [userName, setUsername] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
     const [userPassConfirm, setUserPassConfirm] = useState('');
     const handleUser = () => evt => {
         setUsername(evt.target.value)
+    }
+    const handleEmail = () => evt => {
+        setUserEmail(evt.target.value)
     }
     const handlePass = () => evt => {
         setUserPass(evt.target.value)
@@ -21,11 +25,15 @@ export const SingUp = () => {
         setUserPassConfirm(evt.target.value)
     }
     function handleError(resp) {
+        console.log(resp)
         if (resp.username && resp.password) {
             setErrorMessage('Los campos usuario y contrasena son requeridos')
         }
         if (resp.username) {
             setErrorMessage('Usuario: ' + resp.username[0])
+        }
+        if (resp.email) {
+            setErrorMessage('Correo: ' + resp.email[0])
         }
         if (resp.password) {
             setErrorMessage('Contrasena: ' + resp.password[0])
@@ -58,9 +66,9 @@ export const SingUp = () => {
             setErrorMessage('Debes poner caracteres especiales')
         }
         else {
-            Api.singUpUser({username: userName, password: userPass})
+            Api.singUpUser({username: userName, email: userEmail, password: userPass})
                 .then(resp => resp.username === userName ?
-                    Api.loginUser({username: userName, password: userPass})
+                    Api.loginUser({email: userEmail, password: userPass})
                         .then(resp => setToken('token', resp.token))
                     : handleError(resp))
                 .catch(error => console.log(error))
@@ -75,6 +83,10 @@ export const SingUp = () => {
             <div>
                 <InputSign type="text" placeholder="Nombre" id="username"
                     defaultValue="" onChange={handleUser()} />
+            </div>
+            <div>
+                <InputSign type="email" placeholder="Email" id="email"
+                    defaultValue="" onChange={handleEmail()} />
             </div>
             <div>
                 <InputSign type="password" placeholder="Contrasena" id="password"
