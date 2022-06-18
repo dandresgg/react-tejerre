@@ -11,7 +11,6 @@ export class Api {
             .catch(error => console.log(error))
     }
 
-
     static singUpUser(body) {
         return fetch("http://127.0.0.1:8000/users/create/", {
             method: 'POST',
@@ -24,8 +23,8 @@ export class Api {
             .catch(error => console.log(error))
     }
 
-    static profile(token) {
-        return fetch("http://127.0.0.1:8000/users/profile/details", {
+    static get_user_id(token) {
+        return fetch("http://127.0.0.1:8000/users/profile/get_id", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,15 +35,144 @@ export class Api {
             .catch(error => console.log(error))
     }
 
-    static getReplacementsList() {
-
-        return fetch("http://127.0.0.1:8000/machines/parts/", {
+    static profile(token, user_id) {
+        return fetch(`http://127.0.0.1:8000/users/profile/${user_id}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-            }
+                'Authorization': `Token ${token}`,
+            },
         })
             .then(resp => resp.json())
             .catch(error => console.log(error))
     }
+
+    static update_profile(token, body) {
+        return fetch("http://127.0.0.1:8000/users/profile/update_profile/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+            body: JSON.stringify(body)
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static ask_superuser(token, body) {
+        return fetch("http://127.0.0.1:8000/users/profile/ask_superuser/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+            body: JSON.stringify(body)
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static machine(body) {
+
+        return fetch("http://127.0.0.1:8000/machine/main/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static machineList() {
+
+        return fetch("http://127.0.0.1:8000/machine/main/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+
+    static sector(body) {
+
+        return fetch("http://127.0.0.1:8000/machine/sector/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static sectorList() {
+
+        return fetch("http://127.0.0.1:8000/machine/sector/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static sectorDetail(m_id) {
+
+        return fetch(`http://127.0.0.1:8000/machine/sector/machine_sector/?m_id=${m_id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+
+    static part(body) {
+
+        return fetch("http://127.0.0.1:8000/machine/part/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static partDetailPopup(part_id) {
+
+        return fetch(`http://127.0.0.1:8000/machine/part/${part_id}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+
+    static partDetail(s_id) {
+
+        return fetch(`http://127.0.0.1:8000/machine/part/sector_part/?s_id=${s_id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
 }
