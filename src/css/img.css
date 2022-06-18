@@ -14,3 +14,60 @@
 .hide {
   display: none;
 } 
+.nav-img-icon {
+  width: 50%;
+  margin-top: -1rem;
+  background-color: #000;
+  border-radius: 50%;
+  border: 3px solid ;
+}
+.w-300 {
+  width: 300px;
+}
+.photo {
+  background-color: white;
+}
+.photo img{
+  width: 300px;
+  height: 300px;
+}
+.fa-plus{
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding: 1px;
+  cursor: pointer;
+}
+.fa-plus:hover{
+  opacity: 0.6;
+}
+.fa-minus{
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding: 1px;
+}
+.fa-minus:hover{
+  opacity: 0.6;
+}
+.fa-trash:hover{
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.icon-popup {
+  position: absolute;
+  color: white;
+  right: 1rem;
+  margin: 5px;
+  font-size: xx-large;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 5px;
+  height: 20px;
+  width: 20px;
+}
+.icon-popup:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
