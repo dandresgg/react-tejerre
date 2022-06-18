@@ -1,9 +1,9 @@
 import React from 'react';
-import '../css/img.css'
-import '../css/list.css'
+import '../css/img.css';
+import '../css/list.css';
 
 function PartList(props) {
-    const tableTitles = ['descripcion', 'codigo', 'precio', 'imagen', 'inventario']
+    const tableTitles = ['descripcion', 'referencia', 'precio', 'imagen', 'inventario']
     function TitlesGroup() {
         return (
             <div className='list-parts d-flex space-a center bg-lightb'>
@@ -15,6 +15,9 @@ function PartList(props) {
             </div>
         )
     }
+    const clickedPart = part_id => {
+        props.clickedPart(part_id)
+    }
     return (
         <div className='main-img display-list'>
             <div className='center fit ' id="parts-list" >
@@ -22,13 +25,14 @@ function PartList(props) {
                 <div className="ls-components" >
                     {props.parts && props.parts.map(part => {
                         return (
-                            <div key={part.code}>
+                            <div key={part.code} onClick={() => clickedPart(part.id)}
+                                className='tab-list-parts'>
                                 <div className='list-parts' key={part.id}>
                                     <h6>{part.description}</h6>
-                                    <h6>{part.code}</h6>
+                                    <h6>{part.reference}</h6>
                                     <h6>$ {part.price}</h6>
-                                    <img src={part.img_url} alt="" />
-                                    <h6>inventario</h6>
+                                    <img src={part.img} alt="" />
+                                    <h6>{part.stock}</h6>
                                 </div>
                             </div>
                         )
