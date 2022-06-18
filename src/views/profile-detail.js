@@ -2,31 +2,66 @@ import React, {useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
 import {Api} from './api-service';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAdd, faClose, faEdit, faIdCard, faMailBulk, faMapLocation, faPhone, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faAdd, faClose, faEdit, faIdCard, faMailBulk, faMapLocation, faPhone, faUser, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import '../css/colors.css'
-import {ButtonUpdate, InputSign} from '../css/btn';
+import {ButtonUpdate, InputSign, TextareaSign} from '../css/btn';
 
 
 function ProfileDetails(props) {
-    const [token] = useCookies(['token']);
+    const [token, setToken, deleteToken] = useCookies(['token']);
     const [user, setUser] = useState([]);
     const [iteamActive, setItemActive] = useState('no nulo');
+    const [inputData, setInputData] = useState('');
+    const [errorMessage, setErrorMessage] = useState('')
+    const data_profile = ['username', 'email', 'address', 'phone', 'document'];
+    const ls_profile = ['Nombre', 'Email', 'Direccion', 'Telefono', 'Documento'];
+    const ls_icons = [faUser, faMailBulk, faMapLocation, faPhone, faIdCard]
+
     useEffect(() => {
         if (!token['token']) {
             window.location.href = '/perfil/';
         }
-        Api.profile(token['token']).then((resp => setUser(resp)))
+        Api.get_user_id(token['token'])
+            .then((resp => Api.profile(token['token'], resp.user_id)
+                .then((resp => setUser(resp)))))
     }, [token])
-    const data_profile = ['name', 'email', 'address', 'phone', 'document'];
-    const ls_profile = ['Nombre', 'Email', 'Direccion', 'Telefono', 'Documento'];
-    const ls_icons = [faUser, faMailBulk, faMapLocation, faPhone, faIdCard]
+
     const updateItem = (item) => {
-        console.log(item)
         setItemActive(item)
     }
+
+    const setDataUser = () => evt => {
+        setInputData(evt.target.value)
+    }
+
+    const setUpdate = (item) => {
+        const digitsRegExp = /(?=.*?[0-9])/;
+        const specialCharRegExp = /(?=.*?[@.])/;
+        if (item === 'email' && !specialCharRegExp.test(inputData)) {
+            setErrorMessage('Correo invalido')
+        }
+        else if (item === 'address' && !digitsRegExp.test(inputData)) {
+            setErrorMessage('Direccion invalida')
+        }
+        else {
+            Api.update_profile(token['token'], {body: [item, inputData]})
+                .then((resp => setUser(resp)))
+                .then(() => setErrorMessage(''))
+        }
+    }
+    const logOut = () => {
+        console.log('click')
+        deleteToken('token', {path: '/'});
+    }
+
     return (
         <div>
-            <h1 >Datos de tu cuenta</h1>
+            <div className='out-icon' onClick={logOut}>
+                <FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon>
+                <h6 className='m-0 mayus'>salir</h6>
+            </div>
+            <h1 >Datos de tu Cuenta</h1>
+            {errorMessage && <div className="alert-danger">{errorMessage}</div>}
             <div className="center w-50 mb-1">
                 {data_profile.map((item, index) => (
                     <div className="space-a profile-data w-50 center" key={item}>
@@ -35,14 +70,15 @@ function ProfileDetails(props) {
                                 <FontAwesomeIcon icon={ls_icons[index]} /> {ls_profile[index]}
                                 {iteamActive !== ls_profile[index] ?
                                     <div>
-                                        {user[item] ? <FontAwesomeIcon icon={faEdit} className="purple"
+                                        {user[item] ? <FontAwesomeIcon icon={faEdit}
+                                            className="purple profile-icon"
                                             onClick={() => updateItem(ls_profile[index])} /> :
-                                            <FontAwesomeIcon icon={faAdd} className="purple"
+                                            <FontAwesomeIcon icon={faAdd} className="purple profile-icon"
                                                 onClick={() => updateItem(ls_profile[index])}
                                             />}
 
                                     </div> :
-                                    <FontAwesomeIcon icon={faClose} className='purple'
+                                    <FontAwesomeIcon icon={faClose} className='purple profile-icon'
                                         onClick={() => setItemActive("no nulo")} />
                                 }
                             </div>
@@ -50,18 +86,34 @@ function ProfileDetails(props) {
                                 {iteamActive !== ls_profile[index]
                                     ? <div className="gray">{user[item]}</div> :
                                     <div>
+                                        <div className="gray">{user[item]}</div>
                                         {ls_profile[index] !== 'Direccion' ?
-                                            <InputSign type="text"
+                                            <InputSign type={
+                                                data_profile[index] === 'phone' ||
+                                                    data_profile[index] === 'document' ?
+                                                    'number' : 'text'
+                                            }
+                                                defaultValue=""
+                                                onChange={setDataUser()}
                                                 placeholder={user[item] ?
                                                     user[item] : 'Digita' + "__" + ls_profile[index]}
                                             /> :
-                                            <textarea id="area" name="" cols="30" rows="5"
-                                                placeholder={user[item] ?
-                                                    user[item] : 'Digita' + "__" + ls_profile[index]}
-                                            />
+                                            <div>
+                                                <h6 className="m-0 mt-1">No olvides incluir departamento - ciudad - barrio</h6>
+                                                <h6 className="m-0">para facilitar el envio</h6>
+                                                <TextareaSign id="area" name=""
+                                                    onChange={setDataUser()}
+                                                    placeholder={user[item] ?
+                                                        user[item] : 'Digita' + "__" + ls_profile[index]}
+                                                />
+                                            </div>
                                         }
                                         <div>
-                                            <ButtonUpdate>Actualizar</ButtonUpdate>
+                                            <ButtonUpdate onClick={() => setUpdate(data_profile[index])}>
+                                                {user[item] ?
+                                                    "Actualizar" : "Registrar"
+                                                }
+                                            </ButtonUpdate>
                                         </div>
                                     </div>
                                 }
