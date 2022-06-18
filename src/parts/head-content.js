@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {faClose} from "@fortawesome/free-solid-svg-icons";
+import {Api} from '../views/api-service';
+import {ButtonMachine} from '../css/btn';
 
-function HeadContent() {
+function HeadContent(props) {
     let searchBar = document.getElementById('search-bar');
     let closeSearch = document.getElementById('close-s');
     let iconSearch = document.getElementById('search-icon');
+    const [machine, setMachine] = useState(props.machines[0])
+    const [active, setActive] = useState('');
+    useEffect(() => {
+        setMachine(props.machines[0])
+    }, [])
+
+
     const activeSearchBar = evt => {
         searchBar.style.display = "block"
         closeSearch.style.display = "block"
@@ -16,6 +25,11 @@ function HeadContent() {
         searchBar.style.display = "none"
         closeSearch.style.display = "none"
         iconSearch.style.display = "block"
+    }
+    const clickedMachine = itemM => evt => {
+        setActive(itemM);
+        setMachine(itemM)
+        props.clickedMachine(itemM)
     }
     return (
         <div className='mayus p-btn'>
@@ -32,9 +46,21 @@ function HeadContent() {
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="fix fix-icon-search"
                         onClick={activeSearchBar} id="search-icon" />
                 </div>
-                <h1 className='center mt-1 ll-size'>
-                    kh-860
+                <div className="d-flex">
+                    {props.machines && props.machines.map(itemM => (
+                        <ButtonMachine
+                            key={itemM.name}
+                            active={active === itemM}
+                            onClick={clickedMachine(itemM)}
+                        >
+                            {itemM.name}
+                        </ButtonMachine>
+                    ))}
+                </div>
+                <h1 className='center ll-size'>
+                    {!machine ? 'kh-860' : machine.name}
                 </h1>
+                <hr className="hr-menu" />
             </div>
         </div>
     )
