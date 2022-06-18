@@ -10,15 +10,19 @@
   justify-content: center;
   font-size: calc(10px + 1vmin);
   color: white;
+  font-weight: bolder;
+  border-bottom:10px solid #282c34;
 }
 
 .App-footer {
   background-color: #282c34;
+  border-top:10px solid #282c34;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(5px + 1vmin);
+  font-weight: bolder;
+  font-size: calc(10px + 1vmin);
   color: white;
   position: fixed;
   bottom: 0rem;
@@ -32,7 +36,10 @@
   font-weight: bold;
   font-size: x-large;
 }
-
+.bg-title-nav {
+  background-color: gray;
+  padding: 1px;
+}
 .mayus {
   text-transform: uppercase;
 }
@@ -47,16 +54,34 @@
   justify-content: center;
 }
 .container {
+  border:10px solid #282c34;
+  border-top:0px solid #282c34;
   width: 80%;
+  background-color: #f5f5dc33;
   overflow: scroll;
   height: 90vh;
 }
 .container-left {
+  background-color: #f5f5dc33;
   width: 20%;
+  border-left:10px solid #282c34;
   padding: 0rem 1rem;
-  border-right:10px solid #282c34;
-  background-color: #b39ddb;
 }
 .fix{
   position: fixed;
+}
+.m-0 {
+  margin: 0 !important;
+}
+.mt-1 {
+  margin-top: 1rem !important;
+}
+.nmt-1{
+  margin-top: -1rem;
+}
+.ml-1 {
+  margin-left: 1rem;
+}
+.nmt-2{
+  margin-top: -2rem;
 }
