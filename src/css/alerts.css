@@ -3,3 +3,9 @@
   font-size: x-small;
   margin-bottom: 5px;
 }
+
+.alert-success{
+  color: green;
+  font-size: x-small;
+  margin-bottom: 5px;
+}
