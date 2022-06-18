@@ -20,8 +20,12 @@ export const Login = () => {
     }
 
     function handleError(resp) {
-        if (resp.username || resp.password) {
-            setErrorMessage('Los campos usuario y contrasena son requeridos')
+        console.log(resp)
+        if (resp.email) {
+            setErrorMessage('Email: ' + resp.email)
+        }
+        if (resp.password) {
+            setErrorMessage('Contrasena: ' + resp.password)
         }
         if (resp.non_field_errors) {
             setErrorMessage('Usuario y contrasena invalidos')
@@ -29,8 +33,9 @@ export const Login = () => {
     }
 
     const loginClicked = () => {
-        Api.loginUser({username: userName, password: userPass})
-            .then(resp => resp.token ? setToken('token', resp.token) : handleError(resp))
+        Api.loginUser({email: userName, password: userPass})
+            .then(resp => resp.token ?
+                setToken('token', resp.token, {sameSite: 'none', secure: true, path: '/'}) : handleError(resp))
             .catch(error => console.log(error))
     }
 
