@@ -1,51 +1,54 @@
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
-import {faClose} from "@fortawesome/free-solid-svg-icons";
-import {Api} from '../views/api-service';
+import {faClose, faBinoculars} from "@fortawesome/free-solid-svg-icons";
 import {ButtonMachine} from '../css/btn';
 
 function HeadContent(props) {
-    let searchBar = document.getElementById('search-bar');
-    let closeSearch = document.getElementById('close-s');
-    let iconSearch = document.getElementById('search-icon');
     const [machine, setMachine] = useState(props.machines[0])
     const [active, setActive] = useState('');
+    const [valToFind, setValToFind] = useState('');
+    const [activeSearch, setActiveSearch] = useState(false);
     useEffect(() => {
-        setMachine(props.machines[0])
-    }, [])
+        setMachine(props.machines[0]);
+    }, [props.machines])
 
-
-    const activeSearchBar = evt => {
-        searchBar.style.display = "block"
-        closeSearch.style.display = "block"
-        iconSearch.style.display = "none"
-    }
-    const closeSearchBar = evt => {
-        searchBar.style.display = "none"
-        closeSearch.style.display = "none"
-        iconSearch.style.display = "block"
-    }
     const clickedMachine = itemM => evt => {
         setActive(itemM);
-        setMachine(itemM)
-        props.clickedMachine(itemM)
+        setMachine(itemM);
+        props.clickedMachine(itemM);
+    }
+    const hadleValToFind = (evt) => {
+        setValToFind(evt.target.value);
+    }
+    const findPart = () => {
+        props.getPart(valToFind);
     }
     return (
         <div className='mayus p-btn'>
             <div className='title'>
-                <div className="d-flex">
-                    <div className="fix w-100 d-flex">
-                        <input type="textarea" className='search hide'
-                            placeholder='Buscar repuesto' id="search-bar" />
-                        <div className="close-search">
-                            <FontAwesomeIcon icon={faClose} className="hide" id="close-s"
-                                onClick={closeSearchBar} />
+                {activeSearch ?
+                    <div className="d-flex">
+                        <div className="absolute w-100 d-flex">
+                            <div className="close-search">
+                                <div onClick={findPart}>
+                                    <FontAwesomeIcon icon={faBinoculars} />
+                                    <h6 className='s-size'>buscar</h6>
+                                </div>
+                            </div>
+                            <input type="number" className='search' onChange={hadleValToFind} value={valToFind}
+                                placeholder='# de referencia de repuesto' id="search-bar" />
+                            <div className="close-search">
+                                <div onClick={() => setActiveSearch(false)}>
+                                    <FontAwesomeIcon icon={faClose} id="close-s" />
+                                    <h6 className='s-size'>cerrar</h6>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </div> :
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="fix fix-icon-search"
-                        onClick={activeSearchBar} id="search-icon" />
-                </div>
+                        onClick={() => setActiveSearch(true)} id="search-icon" />
+                }
                 <div className="d-flex">
                     {props.machines && props.machines.map(itemM => (
                         <ButtonMachine
