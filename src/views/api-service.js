@@ -175,4 +175,66 @@ export class Api {
             .catch(error => console.log(error))
     }
 
+    static getPartFromReference(ref, sector) {
+
+        return fetch(`http://127.0.0.1:8000/machine/part/id_from_reference/?ref=${ref}&sector=${sector}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static createOrder(token, body) {
+        return fetch("http://127.0.0.1:8000/orders/manage/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+            body: JSON.stringify(body)
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+
+    static getOrders(token, u_id) {
+        return fetch(`http://127.0.0.1:8000/orders/manage/get_orders/?u_id=${u_id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static deleteOrder(token, order_id) {
+        return fetch(`http://127.0.0.1:8000/orders/manage/${order_id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
+    static updateOrder(token, order_id, body) {
+        return fetch(`http://127.0.0.1:8000/orders/manage/${order_id}/`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Token ${token}`,
+            },
+            body: body
+        })
+            .then(resp => resp.json())
+            .catch(error => console.log(error))
+    }
+
 }
