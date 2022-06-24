@@ -50,7 +50,6 @@ function ProfileDetails(props) {
         }
     }
     const logOut = () => {
-        console.log('click')
         deleteToken('token', {path: '/'});
     }
 
