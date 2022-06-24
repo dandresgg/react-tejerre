@@ -1,32 +1,50 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../css/img.css';
 import '../css/list.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faTrash, faAdd, faSubtract} from '@fortawesome/free-solid-svg-icons';
 import {ButtonAdd} from '../css/btn.js';
+import {useCookies} from "react-cookie";
 
 function PartDetails(props) {
+    const [cartCookie, setCartCookie] = useCookies(['cart-items'])
+    const [itemsCart, setItemsCart] = useState([props['itemsCart']]);
+    const [addActive, setAddActive] = useState(false);
+    const [itemCart, setItemCart] = useState([]);
+
+    useEffect(() => {
+        setAddActive(false)
+        if (cartCookie['cart-items']) {
+            setItemsCart(cartCookie['cart-items']);
+            const exist = itemsCart.find((x) => x.id === props.part.id);
+            if (exist) {
+                setAddActive(true)
+                setItemCart(exist)
+            }
+        } else {
+            setAddActive(false)
+        }
+    }, [cartCookie, itemsCart, props.part.id, props.itemsCart, itemCart])
+
     const closePopup = () => {
         props.closePopup();
     }
-    const [itemsCart, setItemsCart] = useState(props.itemsCart);
-    const [addActive, setAddActive] = useState(false);
-    const [itemCart, setItemCart] = useState([]);
+
     const setNewItem = (item) => {
-        setItemsCart(props.itemsCart)
         setAddActive(true)
-        const exist = itemsCart.find((x) => x.id === item.id);
-        if (exist) {
-            setItemCart(exist);
-        } else {
-            setItemCart(item);
-        }
         props.setNewItem(item);
     }
+
+    const removeItem = (item) => {
+        setAddActive(true)
+        props.removeItem(item);
+    }
+
+
     return (
         <div className='part-details'>
             <FontAwesomeIcon className='icon-popup' icon={faClose} onClick={() => closePopup()} />
-            <h1 className='white'>{props.part.description}</h1>
+            <h1 >{props.part.description}</h1>
             <div className='photo center'>
                 <img src={props.part.photo} alt="" />
             </div>
@@ -36,15 +54,39 @@ function PartDetails(props) {
             </div>
             <div>
                 <h3 className='white'>Inventario: {props.part.stock} disponibles</h3>
-                {!addActive || itemCart.qty < 1 ?
-                    <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
-                    <div className='d-flex center space-b w-300 add-articles'>
-                        <FontAwesomeIcon icon={faTrash} className='center gray' onClick={() => setAddActive(false)} />
-                        <h4 className='white'>Cantidad: </h4>
-                        <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
-                        <FontAwesomeIcon icon={faSubtract} className='center gray' />
-                        <FontAwesomeIcon icon={faAdd} onClick={() => setNewItem(props.part)}
-                            className='center gray' />
+                {props.part.stock === itemCart.qty ?
+                    <div>
+                        <h3>No puedes agregar mas repuestos, se agoto el inventario</h3>
+                        {!addActive || itemCart.qty < 1 ?
+                            <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
+                            <div className='d-flex center space-b w-300 add-articles'>
+                                <FontAwesomeIcon icon={faTrash} className='center gray'
+                                    onClick={() => setAddActive(false)} />
+                                <h4 className='white'>Cantidad: </h4>
+                                <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
+                                <FontAwesomeIcon icon={faSubtract}
+                                    className='center gray'
+                                    onClick={() => removeItem(props.part)} />
+                            </div>
+                        }
+                    </div>
+                    :
+                    <div>
+                        {!addActive || itemCart.qty < 1 ?
+                            <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
+                            <div className='d-flex center space-b w-300 add-articles'>
+                                <FontAwesomeIcon icon={faTrash} className='center gray'
+                                    onClick={() => setAddActive(false)} />
+                                <h4 className='white'>Cantidad: </h4>
+                                <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
+                                <FontAwesomeIcon icon={faSubtract}
+                                    className='center gray'
+                                    onClick={() => removeItem(props.part)} />
+                                <FontAwesomeIcon icon={faAdd}
+                                    onClick={() => setNewItem(props.part)}
+                                    className='center gray' />
+                            </div>
+                        }
                     </div>
                 }
             </div>
