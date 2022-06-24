@@ -1,6 +1,6 @@
 import './App.css';
 import './css/btn.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './css/img.css'
 import {
     Routes,
@@ -17,14 +17,22 @@ import CartDetails from './views/cart-details';
 import {useCookies} from "react-cookie";
 
 export const App = () => {
-    const [itemsCart, setItemsCart] = useState([]);
     const [cartCookie, setCartCookie] = useCookies(['cart-items'])
+    const [itemsCart, setItemsCart] = useState([]);
+
+    useEffect(() => {
+        if (cartCookie['cart-items']) {
+            setItemsCart(cartCookie['cart-items'])
+        }
+    }, [])
+
     const setNewItem = (item) => {
         const exist = itemsCart.find((x) => x.id === item.id);
         if (exist) {
             setItemsCart(
                 itemsCart.map((x) =>
-                    x.id === item.id ? {...exist, qty: exist.qty + 1} : x)
+                    x.id === item.id ? {...exist, qty: exist.qty + 1} : x
+                )
             );
 
         } else {
@@ -32,6 +40,20 @@ export const App = () => {
         }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
     }
+
+    const removeItem = (item) => {
+        const exist = itemsCart.find((x) => x.id === item.id);
+        const index = itemsCart.findIndex((x) => x.id === item.id);
+        if (exist.qty === 0) {
+            setItemsCart(itemsCart.filter((x) => x.id === item.id));
+        } else {
+            setItemsCart(
+                itemsCart.map((x) =>
+                    x.id === item.id ? {...exist, qty: exist.qty - 1} : x)
+            );
+        }
+        setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
+    };
     return (
         <div className="App">
             <header className="App-header mayus bg-main">
@@ -45,7 +67,9 @@ export const App = () => {
                     <Routes>
                         <Route path='/perfil' caseSensitive={false} element={<Auth />} />
                         <Route path='/repuestos' caseSensitive={false} element={
-                            <Replacements itemsCart={itemsCart} setNewItem={setNewItem} />
+                            <Replacements itemsCart={itemsCart}
+                                setNewItem={setNewItem}
+                                removeItem={removeItem} />
                         } />
                         <Route path='/contacto' caseSensitive={false} element={<Contact />} />
                         <Route path='/carro' caseSensitive={false} element={<Cart />} />
