@@ -12,6 +12,15 @@
 .list-parts h6{
   width: 100px;
 }
+
+.list-parts input{
+  width: 100px;
+  font-size:xx-small;
+}
+.list-parts label{
+  width: 100px;
+  font-size:xx-small;
+}
 .list-parts img{
   width: 15vh;
   height: 10vh;
@@ -104,13 +113,12 @@
   height: 10vh;
 }
 .w-100{
-  width: 120%;
+  width: 100%;
 }
 .vw-100 {
   width: 100vh;
 }
 .search {
-  border: 1px solid lightblue;
   width: 57%;
   border-radius: 10px;
   font-size: 1rem;
@@ -118,6 +126,7 @@
   font-weight: bolder;
   height: 40px;
   padding: 5px;
+  z-index: 100;
 }
 .fix-icon-search {
   opacity: 0.7;
@@ -145,14 +154,19 @@
 }
 .close-search {
   display: flex;
-  font-size: 2rem;
+  font-size: 1rem;
   align-items: center;
   margin-left: .5rem;
   padding: 2px;
+  z-index: 100;
 }
 .close-search :hover {
   cursor: pointer;
-  color: red;
+  opacity: 0.7;
+}
+.close-search h6{
+  margin-top: 1px;
+  font-size: 10px;
 }
 
 .profile-data {

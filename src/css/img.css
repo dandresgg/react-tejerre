@@ -26,6 +26,7 @@
 }
 .photo {
   background-color: white;
+  border: 5px solid;
 }
 .photo img{
   width: 300px;
@@ -64,10 +65,38 @@
   border-radius: 50%;
   padding: 5px;
   height: 20px;
+  background-color: #282c34;
   width: 20px;
 }
 .icon-popup:hover {
   opacity: 0.7;
   cursor: pointer;
 }
-
+.fa-circle-info{
+  font-size: large;
+  color: purple;
+}
+.fa-circle-info:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+.fa-xmark{
+  font-size: large;
+}
+.fa-trash-can{
+  font-size: large;
+  color: darkgray;
+}
+.fa-trash-can:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+.fa-stamp {
+  font-size: large;
+}
+.fa-binoculars {
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 6px;
+  background-color: #d1c4e9;
+}
