@@ -20,7 +20,6 @@ export const Login = () => {
     }
 
     function handleError(resp) {
-        console.log(resp)
         if (resp.email) {
             setErrorMessage('Email: ' + resp.email)
         }
