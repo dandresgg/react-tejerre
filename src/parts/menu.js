@@ -8,15 +8,16 @@ import {
 import {Api} from '../views/api-service';
 import {ButtonMenu} from "../css/btn";
 
-export const MenuOptions = () => {
+export const MenuOptions = (props) => {
     const [token] = useCookies(['token']);
+    const [items] = useCookies(['cart-items']);
     useEffect(() => {
         Api.ask_superuser(token['token'])
             .then(resp => {
                 resp.detail === 'Invalid token.' || resp === 'no admin' ?
                     setIsSuperUser(false) : setIsSuperUser(true)
             })
-    })
+    }, [items, token])
     const [isSuperUser, setIsSuperUser] = useState(false)
     var lsMenu = []
     var icons = []
@@ -43,7 +44,9 @@ export const MenuOptions = () => {
                             active={active === menu}
                             onClick={() => setActive(menu)}>
                             <div className='d-flex space-b'>
-                                {menu} <FontAwesomeIcon icon={icons[index]} />
+                                {menu}
+                                {menu === 'carro' && props.counter ? <div className="purple bg-w">{props.counter}</div> : null}
+                                <FontAwesomeIcon icon={icons[index]} />
                             </div>
                         </ButtonMenu>
                     </Link>
