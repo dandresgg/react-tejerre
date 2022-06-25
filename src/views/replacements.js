@@ -6,7 +6,7 @@ import PartDetails from '../parts/part-details';
 import {Api} from './api-service';
 
 function Replacements(props) {
-    const {itemsCart, setNewItem, removeItem} = props;
+    const {itemsCart, setNewItem, removeItem, deleteItem} = props;
     const [machines, setMachines] = useState([]);
     const [sectors, setSectors] = useState([]);
     const [sector, setSector] = useState([]);
@@ -51,17 +51,20 @@ function Replacements(props) {
         Api.partDetailPopup(part_id).then(resp => setPart(resp))
     }
     const closePopup = () => {
-        setPartDetail(false)
+        setPartDetail(false);
     }
     const getPart = (valToFind) => {
         Api.getPartFromReference(valToFind, sector['id'])
             .then(resp => resp === 'Elemento no encontrado' ? alert(resp) : clickedPart(resp))
     }
     return (
-        <div>
+        <div className='mb-3'>
             {partDetail ?
                 <PartDetails part={part} closePopup={closePopup}
-                    itemsCart={itemsCart} setNewItem={setNewItem} removeItem={removeItem}>
+                    itemsCart={itemsCart}
+                    setNewItem={setNewItem}
+                    deleteItem={deleteItem}
+                    removeItem={removeItem}>
                 </PartDetails> : null
             }
             <HeadContent machines={machines} clickedMachine={clickedMachine} getPart={getPart}></HeadContent>
