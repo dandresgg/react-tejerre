@@ -4,7 +4,8 @@ import {ButtonSign} from '../css/btn.js';
 import {useCookies} from "react-cookie";
 import {Api} from '../views/api-service';
 import Orders from './orders/orders';
-import {counter} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrash, faAdd, faSubtract, faT} from '@fortawesome/free-solid-svg-icons';
 
 function CartDetails(props) {
     const [token, setToken, deleteItems] = useCookies(['token']);
@@ -16,20 +17,16 @@ function CartDetails(props) {
     const [totalPrice, setTotalPrice] = useState(0)
     const [itemsPrice, setItemsPrice] = useState(0)
     const [activePay, setActivePay] = useState(false)
-    const lsDetails = ['articulo', 'Codigo', 'foto', 'precio', 'subtotal']
+    const lsDetails = ['articulo', 'Codigo', 'foto', 'precio', 'subtotal', '--']
 
     useEffect(() => {
         if (items) {
             setItemsPrice(items.reduce((a, c) => a + c.price * c.qty, 0));
             setTotalPrice(itemsPrice); // by now
-            let count = 0
-            for (let index in items) {
-                if (items[index]['qty'] === 0) {
-                    count = count + 1
-                }
-            }
-            if (items.length === count) {
+            if (itemsPrice === 0 && props.counter === 0) {
                 setActiveBuyOptions(false)
+            } else {
+                setActiveBuyOptions(true)
             }
         }
         Api.get_user_id(token['token'])
@@ -37,7 +34,7 @@ function CartDetails(props) {
             .then(resp => Api.getOrders(token['token'], resp['id'])
                 .then(resp => resp !== 'false' ? setOrders(resp) : console.log(resp))
             )
-    }, [itemsPrice])
+    }, [itemsPrice, items, props.counter, token])
 
     const createOrder = () => {
         Api.get_user_id(token['token'])
@@ -63,8 +60,20 @@ function CartDetails(props) {
             setItems(null)
         }
     }
+    const setNewItem = (item) => {
+        props.setNewItem(item);
+        setItems(props.itemsCart)
+    }
+    const removeItem = (item) => {
+        props.removeItem(item);
+        setItems(props.itemsCart)
+    }
+    const deleteItem = (item) => {
+        props.deleteItem(item);
+        setItems(props.itemsCart)
+    }
     return (
-        <div>
+        <div className='mb-3'>
             <h1 className='center mt-1'>Carrito de compra</h1>
             <div className='list-parts center bg-lightb mayus'>
                 {lsDetails.map(ls => (
@@ -82,6 +91,15 @@ function CartDetails(props) {
                                     <img src={item.photo} alt="" />
                                     <h6>{item.qty} x ${item.price}</h6>
                                     <h6>${item.qty * item.price}</h6>
+                                    <FontAwesomeIcon icon={faSubtract}
+                                        className='purple'
+                                        onClick={() => removeItem(item)} />
+                                    <FontAwesomeIcon icon={faAdd}
+                                        onClick={() => setNewItem(item)}
+                                        className='purple' />
+                                    <FontAwesomeIcon icon={faTrash}
+                                        onClick={() => deleteItem(item)}
+                                        className='purple' />
                                 </div>
                                 : null
                             }

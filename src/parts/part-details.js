@@ -39,6 +39,10 @@ function PartDetails(props) {
         setAddActive(true)
         props.removeItem(item);
     }
+    const deleteItem = (item) => {
+        setAddActive(false)
+        props.deleteItem(item);
+    }
 
 
     return (
@@ -61,7 +65,7 @@ function PartDetails(props) {
                             <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
                             <div className='d-flex center space-b w-300 add-articles'>
                                 <FontAwesomeIcon icon={faTrash} className='center gray'
-                                    onClick={() => setAddActive(false)} />
+                                    onClick={() => deleteItem(props.part)} />
                                 <h4 className='white'>Cantidad: </h4>
                                 <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
                                 <FontAwesomeIcon icon={faSubtract}
@@ -76,7 +80,7 @@ function PartDetails(props) {
                             <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
                             <div className='d-flex center space-b w-300 add-articles'>
                                 <FontAwesomeIcon icon={faTrash} className='center gray'
-                                    onClick={() => setAddActive(false)} />
+                                    onClick={() => deleteItem(props.part)} />
                                 <h4 className='white'>Cantidad: </h4>
                                 <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
                                 <FontAwesomeIcon icon={faSubtract}
