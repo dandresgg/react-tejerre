@@ -19,11 +19,14 @@ import {useCookies} from "react-cookie";
 export const App = () => {
     const [cartCookie, setCartCookie] = useCookies(['cart-items'])
     const [itemsCart, setItemsCart] = useState([]);
+    const [counter, setCounter] = useState(0)
 
     useEffect(() => {
         if (cartCookie['cart-items']) {
             setItemsCart(cartCookie['cart-items'])
         }
+        let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
+        setCounter(sumCount)
     }, [])
 
     const setNewItem = (item) => {
@@ -39,11 +42,12 @@ export const App = () => {
             setItemsCart([...itemsCart, {...item, qty: 1}]);
         }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
+        let sumCount = itemsCart.reduce((a, c) => a + c.qty, 0)
+        setCounter(sumCount)
     }
 
     const removeItem = (item) => {
         const exist = itemsCart.find((x) => x.id === item.id);
-        const index = itemsCart.findIndex((x) => x.id === item.id);
         if (exist.qty === 0) {
             setItemsCart(itemsCart.filter((x) => x.id === item.id));
         } else {
@@ -53,7 +57,24 @@ export const App = () => {
             );
         }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
+        let sumCount = itemsCart.reduce((a, c) => a + c.qty, 0)
+        setCounter(sumCount)
     };
+    const deleteItem = (item) => {
+        const exist = itemsCart.find((x) => x.id === item.id);
+        console.log(exist)
+        if (exist) {
+            setItemsCart(
+                itemsCart.map((x) =>
+                    x.id === item.id ? {...exist, qty: exist.qty - exist.qty} : x
+                )
+            );
+            setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
+            let sumCount = itemsCart.reduce((a, c) => a + c.qty, 0)
+            setCounter(sumCount)
+        }
+    }
+
     return (
         <div className="App">
             <header className="App-header mayus bg-main">
@@ -61,7 +82,7 @@ export const App = () => {
             </header>
             <div className="d-flex space-b">
                 <div className='container-left'>
-                    <MenuOptions />
+                    <MenuOptions counter={counter} />
                 </div>
                 <div className='container center'>
                     <Routes>
@@ -69,6 +90,7 @@ export const App = () => {
                         <Route path='/repuestos' caseSensitive={false} element={
                             <Replacements itemsCart={itemsCart}
                                 setNewItem={setNewItem}
+                                deleteItem={deleteItem}
                                 removeItem={removeItem} />
                         } />
                         <Route path='/contacto' caseSensitive={false} element={<Contact />} />
@@ -78,7 +100,12 @@ export const App = () => {
                             element={<ProfileDetails />} />
                         <Route path='/cart/detalles' caseSensitive={false}
                             element={
-                                <CartDetails cartCookie={cartCookie} />
+                                <CartDetails cartCookie={cartCookie}
+                                    counter={counter}
+                                    itemsCart={itemsCart}
+                                    deleteItem={deleteItem}
+                                    setNewItem={setNewItem}
+                                    removeItem={removeItem} />
                             }
                         />
                     </Routes>
