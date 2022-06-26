@@ -13,8 +13,8 @@ function ProfileDetails(props) {
     const [iteamActive, setItemActive] = useState('no nulo');
     const [inputData, setInputData] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
-    const data_profile = ['username', 'email', 'address', 'phone', 'document'];
-    const ls_profile = ['Nombre', 'Email', 'Direccion', 'Telefono', 'Documento'];
+    const data_profile = ['username', 'email', 'address', 'phone'];
+    const ls_profile = ['Nombre', 'Email', 'Direccion', 'Telefono'];
     const ls_icons = [faUser, faMailBulk, faMapLocation, faPhone, faIdCard]
 
     useEffect(() => {
@@ -88,8 +88,7 @@ function ProfileDetails(props) {
                                         <div className="gray">{user[item]}</div>
                                         {ls_profile[index] !== 'Direccion' ?
                                             <InputSign type={
-                                                data_profile[index] === 'phone' ||
-                                                    data_profile[index] === 'document' ?
+                                                data_profile[index] === 'phone' ?
                                                     'number' : 'text'
                                             }
                                                 defaultValue=""
