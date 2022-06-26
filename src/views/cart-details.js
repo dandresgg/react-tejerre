@@ -75,11 +75,13 @@ function CartDetails(props) {
     return (
         <div className='mb-3'>
             <h1 className='center mt-1'>Carrito de compra</h1>
-            <div className='list-parts center bg-lightb mayus'>
-                {lsDetails.map(ls => (
-                    <h6 className='white' key={ls}>{ls}</h6>
-                ))}
-            </div> :
+            {props.counter === 0 ? <h2 className='gray'>Carro vacio</h2> :
+                <div className='list-parts center bg-lightb mayus'>
+                    {lsDetails.map(ls => (
+                        <h6 className='white' key={ls}>{ls}</h6>
+                    ))}
+                </div>
+            }
             {items ?
                 <div>
                     {items.map(item => (
