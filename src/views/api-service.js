@@ -1,6 +1,10 @@
+// const REACT_APP_API_URL = "http://127.0.0.1:8000"
+const REACT_APP_API_URL = "https://knitting-api.herokuapp.com"
+
 export class Api {
+
     static loginUser(body) {
-        return fetch("http://127.0.0.1:8000/auth/", {
+        return fetch(`${REACT_APP_API_URL}/auth/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -12,7 +16,7 @@ export class Api {
     }
 
     static singUpUser(body) {
-        return fetch("http://127.0.0.1:8000/users/create/", {
+        return fetch(`${REACT_APP_API_URL}/users/create/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +28,7 @@ export class Api {
     }
 
     static get_user_id(token) {
-        return fetch("http://127.0.0.1:8000/users/profile/get_id", {
+        return fetch(`${REACT_APP_API_URL}/users/profile/get_id`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +40,7 @@ export class Api {
     }
 
     static profile(token, user_id) {
-        return fetch(`http://127.0.0.1:8000/users/profile/${user_id}/`, {
+        return fetch(`${REACT_APP_API_URL}/users/profile/${user_id}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +52,7 @@ export class Api {
     }
 
     static update_profile(token, body) {
-        return fetch("http://127.0.0.1:8000/users/profile/update_profile/", {
+        return fetch(`${REACT_APP_API_URL}/users/profile/update_profile/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +65,7 @@ export class Api {
     }
 
     static ask_superuser(token, body) {
-        return fetch("http://127.0.0.1:8000/users/profile/ask_superuser/", {
+        return fetch(`${REACT_APP_API_URL}/users/profile/ask_superuser/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +79,7 @@ export class Api {
 
     static machine(body) {
 
-        return fetch("http://127.0.0.1:8000/machine/main/", {
+        return fetch(`${REACT_APP_API_URL}/machine/main/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,7 +92,7 @@ export class Api {
 
     static machineList() {
 
-        return fetch("http://127.0.0.1:8000/machine/main/", {
+        return fetch(`${REACT_APP_API_URL}/machine/main/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +105,7 @@ export class Api {
 
     static sector(body) {
 
-        return fetch("http://127.0.0.1:8000/machine/sector/", {
+        return fetch(`${REACT_APP_API_URL}/machine/sector/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -114,7 +118,7 @@ export class Api {
 
     static sectorList() {
 
-        return fetch("http://127.0.0.1:8000/machine/sector/", {
+        return fetch(`${REACT_APP_API_URL}/machine/sector/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +130,7 @@ export class Api {
 
     static sectorDetail(m_id) {
 
-        return fetch(`http://127.0.0.1:8000/machine/sector/machine_sector/?m_id=${m_id}`, {
+        return fetch(`${REACT_APP_API_URL}/machine/sector/machine_sector/?m_id=${m_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -139,7 +143,7 @@ export class Api {
 
     static part(body) {
 
-        return fetch("http://127.0.0.1:8000/machine/part/", {
+        return fetch(`${REACT_APP_API_URL}/machine/part/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -152,7 +156,7 @@ export class Api {
 
     static partDetailPopup(part_id) {
 
-        return fetch(`http://127.0.0.1:8000/machine/part/${part_id}/`, {
+        return fetch(`${REACT_APP_API_URL}/machine/part/${part_id}/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -165,7 +169,7 @@ export class Api {
 
     static partDetail(s_id) {
 
-        return fetch(`http://127.0.0.1:8000/machine/part/sector_part/?s_id=${s_id}`, {
+        return fetch(`${REACT_APP_API_URL}/machine/part/sector_part/?s_id=${s_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -177,7 +181,7 @@ export class Api {
 
     static getPartFromReference(ref, sector) {
 
-        return fetch(`http://127.0.0.1:8000/machine/part/id_from_reference/?ref=${ref}&sector=${sector}`, {
+        return fetch(`${REACT_APP_API_URL}/machine/part/id_from_reference/?ref=${ref}&sector=${sector}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -188,7 +192,7 @@ export class Api {
     }
 
     static createOrder(token, body) {
-        return fetch("http://127.0.0.1:8000/orders/manage/", {
+        return fetch(`${REACT_APP_API_URL}/orders/manage/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -202,7 +206,7 @@ export class Api {
 
 
     static getOrders(token, u_id) {
-        return fetch(`http://127.0.0.1:8000/orders/manage/get_orders/?u_id=${u_id}`, {
+        return fetch(`${REACT_APP_API_URL}/orders/manage/get_orders/?u_id=${u_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -214,7 +218,7 @@ export class Api {
     }
 
     static deleteOrder(token, order_id) {
-        return fetch(`http://127.0.0.1:8000/orders/manage/${order_id}/`, {
+        return fetch(`${REACT_APP_API_URL}/orders/manage/${order_id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -226,7 +230,7 @@ export class Api {
     }
 
     static updateOrder(token, order_id, body) {
-        return fetch(`http://127.0.0.1:8000/orders/manage/${order_id}/`, {
+        return fetch(`${REACT_APP_API_URL}/orders/manage/${order_id}/`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Token ${token}`,
@@ -239,7 +243,7 @@ export class Api {
 
     static sendMsm(body) {
 
-        return fetch("http://127.0.0.1:8000/users/create/send_msm/", {
+        return fetch(`${REACT_APP_API_URL}/users/create/send_msm/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
