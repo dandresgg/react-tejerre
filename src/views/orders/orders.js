@@ -18,6 +18,7 @@ function Orders(props) {
 
     useEffect(() => {
         setOrders(props['orders']);
+        console.log(orders)
         Api.get_user_id(token['token'])
             .then(resp => Api.profile(token['token'], resp['user_id']))
             .then(resp => setUser(resp['id']));
@@ -76,8 +77,8 @@ function Orders(props) {
             }
             <hr className='hr-menu mt-1' />
             <h4 className='mayus gray'>ordenes de compra</h4>
-            <h5 className='gray w-50 center mt-1'>El pago lo puedes realizar a traves de nequi
-                al numero <strong>316 567 5153</strong>
+            <h5 className='gray w-50 center mt-1'>El pago lo puedes realizar a través de nequi
+                al número <strong>316 567 5153</strong>
             </h5>
             <div>
                 <div className='list-parts center bg-lightb'>
@@ -85,7 +86,7 @@ function Orders(props) {
                         <h6 className='white mayus' key={ls} >{ls}</h6>
                     ))}
                 </div>
-                {orders ? orders.map((order, index) => (
+                {orders !== null ? orders.map((order, index) => (
                     <div key={index}>
                         <div key={order.number} className='list-parts center d-flex space-a'>
                             <h6><FontAwesomeIcon
