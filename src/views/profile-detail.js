@@ -50,6 +50,7 @@ function ProfileDetails(props) {
         }
     }
     const logOut = () => {
+        console.log('out')
         deleteToken('token', {path: '/'});
     }
 
@@ -59,7 +60,7 @@ function ProfileDetails(props) {
                 <FontAwesomeIcon icon={faSignOutAlt}></FontAwesomeIcon>
                 <h6 className='m-0 mayus'>salir</h6>
             </div>
-            <h1 >Datos de tu Cuenta</h1>
+            <h1 >Datos de tu cuenta</h1>
             {errorMessage && <div className="alert-danger">{errorMessage}</div>}
             <div className="center w-50 mb-1">
                 {data_profile.map((item, index) => (
