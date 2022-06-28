@@ -26,7 +26,7 @@ export const NewPart = () => {
     const handleStock = () => evt => {setStock(evt.target.value);}
     const handleImg = () => evt => {setImg(evt.target.value);}
     const handlePhoto = () => evt => {setPhoto(evt.target.value);}
-    const handleSeller = () => evt => {setSeler(evt.target.value);}
+    const handleSeller = () => evt => {setSeller(evt.target.value);}
 
     function handleError(resp) {
         for (let e in resp) {
