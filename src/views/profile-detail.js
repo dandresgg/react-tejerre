@@ -51,7 +51,8 @@ function ProfileDetails(props) {
     }
     const logOut = () => {
         console.log('out')
-        deleteToken(token['token'], {path: '/'});
+        deleteToken('token', {path: '/'});
+        deleteToken('token', {path: '/', domain: 'https://tejerre.herokuapp.com'});
     }
 
     return (
