@@ -26,7 +26,7 @@ export const Login = () => {
         if (resp.password) {
             setErrorMessage('Contraseña: ' + resp.password)
         }
-        if (resp.non_field_errors) {
+        if (resp.non_field_errors || resp.detail) {
             setErrorMessage('Usuario y contraseña invalidos')
         }
     }
