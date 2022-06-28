@@ -18,7 +18,6 @@ function Orders(props) {
 
     useEffect(() => {
         setOrders(props['orders']);
-        console.log(orders)
         Api.get_user_id(token['token'])
             .then(resp => Api.profile(token['token'], resp['user_id']))
             .then(resp => setUser(resp['id']));
@@ -86,7 +85,7 @@ function Orders(props) {
                         <h6 className='white mayus' key={ls} >{ls}</h6>
                     ))}
                 </div>
-                {orders !== null ? orders.map((order, index) => (
+                {orders.map ? orders.map((order, index) => (
                     <div key={index}>
                         <div key={order.number} className='list-parts center d-flex space-a'>
                             <h6><FontAwesomeIcon
