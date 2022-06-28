@@ -24,10 +24,10 @@ export const Login = () => {
             setErrorMessage('Email: ' + resp.email)
         }
         if (resp.password) {
-            setErrorMessage('Contrasena: ' + resp.password)
+            setErrorMessage('Contraseña: ' + resp.password)
         }
         if (resp.non_field_errors) {
-            setErrorMessage('Usuario y contrasena invalidos')
+            setErrorMessage('Usuario y contraseña invalidos')
         }
     }
 
@@ -43,17 +43,17 @@ export const Login = () => {
             <h1>Bienvenido</h1>
             <h4 className="gray">Por favor ingresa para continuar</h4>
             {errorMessage && <div className="alert-danger">{errorMessage}</div>}
-            <InputSign type="text" placeholder="Nombre" id="username"
+            <InputSign type="text" placeholder="Correo" id="username"
                 defaultValue="" onChange={handleUser()} />
             <br />
-            <InputSign type="password" placeholder="Contrasena" id="password"
+            <InputSign type="password" placeholder="Contraseña" id="password"
                 defaultValue="" onChange={handlePass()} />
             <Anchor>
-                <h4>Olvidaste tu contrasena?</h4>
+                <h4>¿Olvidaste tu contraseña?</h4>
             </Anchor>
             <ButtonSign onClick={loginClicked}>Ingresar</ButtonSign>
             <div>
-                <h4>Ya tienes cuenta?, <Anchor onClick={() => setActiveLog(false)}>registrate</Anchor> </h4>
+                <h4>¿Ya tienes cuenta?, <Anchor onClick={() => setActiveLog(false)}>registrate</Anchor> </h4>
             </div>
         </div>
     );
