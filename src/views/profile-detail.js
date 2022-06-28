@@ -50,9 +50,8 @@ function ProfileDetails(props) {
         }
     }
     const logOut = () => {
-        console.log('out')
         deleteToken('token', {path: '/'});
-        deleteToken('token', {path: '/', domain: 'https://tejerre.herokuapp.com'});
+        window.location.href = '/perfil/';
     }
 
     return (
