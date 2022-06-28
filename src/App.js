@@ -24,9 +24,9 @@ export const App = () => {
     useEffect(() => {
         if (cartCookie['cart-items']) {
             setItemsCart(cartCookie['cart-items'])
+            let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
+            setCounter(sumCount)
         }
-        let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
-        setCounter(sumCount)
     }, [])
 
     const setNewItem = (item) => {
