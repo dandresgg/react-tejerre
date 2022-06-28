@@ -18,6 +18,7 @@ export const NewPart = () => {
     const [stock, setStock] = useState('');
     const [img, setImg] = useState('');
     const [photo, setPhoto] = useState('');
+    const [seller, setSeller] = useState('');
 
     const handleDescription = () => evt => {setDescription(evt.target.value);}
     const handleCode = () => evt => {setCode(evt.target.value);}
@@ -25,6 +26,7 @@ export const NewPart = () => {
     const handleStock = () => evt => {setStock(evt.target.value);}
     const handleImg = () => evt => {setImg(evt.target.value);}
     const handlePhoto = () => evt => {setPhoto(evt.target.value);}
+    const handleSeller = () => evt => {setSeler(evt.target.value);}
 
     function handleError(resp) {
         for (let e in resp) {
@@ -42,6 +44,7 @@ export const NewPart = () => {
             stock: stock,
             img: img,
             photo: photo,
+            url_seller: seller,
         }).then(resp => handleError(resp))
     }
 
@@ -77,6 +80,9 @@ export const NewPart = () => {
             <br />
             <InputSign type="text" placeholder="Photo" id="photo"
                 defaultValue="" onChange={handlePhoto()} />
+            <br />
+            <InputSign type="text" placeholder="Seller" id="photo"
+                defaultValue="" onChange={handleSeller()} />
             <br />
             <ButtonSign onClick={createPart}>crear</ButtonSign>
         </div>
