@@ -76,19 +76,23 @@ function PartDetails(props) {
                     </div>
                     :
                     <div>
-                        {!addActive || itemCart.qty < 1 ?
-                            <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
-                            <div className='d-flex center space-b w-300 add-articles'>
-                                <FontAwesomeIcon icon={faTrash} className='center gray'
-                                    onClick={() => deleteItem(props.part)} />
-                                <h4 className='white'>Cantidad: </h4>
-                                <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
-                                <FontAwesomeIcon icon={faSubtract}
-                                    className='center gray'
-                                    onClick={() => removeItem(props.part)} />
-                                <FontAwesomeIcon icon={faAdd}
-                                    onClick={() => setNewItem(props.part)}
-                                    className='center gray' />
+                        {props.part.stock === 0 ? null :
+                            <div>
+                                {!addActive || itemCart.qty < 1 ?
+                                    <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
+                                    <div className='d-flex center space-b w-300 add-articles'>
+                                        <FontAwesomeIcon icon={faTrash} className='center gray'
+                                            onClick={() => deleteItem(props.part)} />
+                                        <h4 className='white'>Cantidad: </h4>
+                                        <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
+                                        <FontAwesomeIcon icon={faSubtract}
+                                            className='center gray'
+                                            onClick={() => removeItem(props.part)} />
+                                        <FontAwesomeIcon icon={faAdd}
+                                            onClick={() => setNewItem(props.part)}
+                                            className='center gray' />
+                                    </div>
+                                }
                             </div>
                         }
                     </div>
