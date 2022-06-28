@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# All firebase deploy quit, try to apply into heroku
+.github/
+/functions
+.firebaserc
+firebase.json
