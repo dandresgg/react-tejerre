@@ -8,7 +8,7 @@ import {useCookies} from "react-cookie";
 import OrderDetails from './order-details'
 
 function Orders(props) {
-    const [token, setToken] = useCookies(['token']);
+    const [token] = useCookies(['token']);
     const [orders, setOrders] = useState(props['orders']);
     const lsOrder = ['info', 'numero orden', 'estado', 'fecha', 'enviado', 'factura', '--'];
     const [order, setOrder] = useState([]);
@@ -35,7 +35,7 @@ function Orders(props) {
         fileUpload.style.display = 'none';
     }
     const confirmDeleteOrder = (order) => {
-        Api.deleteOrder(token['token'], order.id).then(resp => console.log(resp));
+        Api.deleteOrder(token['token'], order.id).then(resp => window.location.href = '/cart/detalles')
         Api.get_user_id(token['token'])
             .then(resp => Api.profile(token['token'], resp['user_id']))
             .then(resp => Api.getOrders(token['token'], resp['id']))
