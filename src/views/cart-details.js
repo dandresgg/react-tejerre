@@ -39,27 +39,24 @@ function CartDetails(props) {
     const createOrder = () => {
         Api.get_user_id(token['token'])
             .then(resp => Api.profile(token['token'], resp['user_id']))
-            .then(resp => setUser(resp));
-        if (user['address'] === '') {
-            setErrorMessage(
-                'No hay una direccion registrada para hacer el envio, ve a tu perfil para completar');
-        }
-        else if (user['phone'] === 0) {
-            setErrorMessage(
-                'No hay un telefono registrado, ve a tu perfil para completar');
-        }
-        else {
-            var ranNumber = Math.floor(Math.random() * 1000)
-            Api.get_user_id(token['token'])
-                .then(resp => Api.profile(token['token'], resp['user_id']))
-                .then(resp => Api.createOrder(token['token'], {user: resp['id'], number: ranNumber, data_json: items}))
-                .then(resp => Api.getOrders(token['token'], resp['user']))
-                .then(resp => setOrders(resp))
-                .then(resp => deleteItems('cart-items', {path: '/'}))
-                ;
-            setItems(null)
-        }
+            .then(resp => resp['address'] === '' || resp['phone'] === 0 ?
+                setErrorMessage(
+                'No hay una direccion y/o telefono registrado para hacer el envio, ve a tu perfil para completar')
+                : finishOrder())
     }
+    
+    function finishOrder() {
+           var ranNumber = Math.floor(Math.random() * 100000)
+           Api.get_user_id(token['token'])
+               .then(resp => Api.profile(token['token'], resp['user_id']))
+               .then(resp => Api.createOrder(token['token'], {user: resp['id'], number: ranNumber, data_json: items}))
+               .then(resp => Api.getOrders(token['token'], resp['user']))
+               .then(resp => setOrders(resp))
+               .then(resp => deleteItems('cart-items', {path: '/'}))
+               ;
+           setItems(null)
+    }
+
     const setNewItem = (item) => {
         props.setNewItem(item);
         setItems(props.itemsCart)
