@@ -7,7 +7,7 @@ import {ButtonAdd} from '../css/btn.js';
 import {useCookies} from "react-cookie";
 
 function PartDetails(props) {
-    const [cartCookie, setCartCookie] = useCookies(['cart-items'])
+    const [cartCookie] = useCookies(['cart-items'])
     const [itemsCart, setItemsCart] = useState([props['itemsCart']]);
     const [addActive, setAddActive] = useState(false);
     const [itemCart, setItemCart] = useState([]);
@@ -24,7 +24,7 @@ function PartDetails(props) {
         } else {
             setAddActive(false)
         }
-    }, [cartCookie, itemsCart, props.part.id, props.itemsCart, itemCart])
+    }, [cartCookie, itemsCart, props.part.id, props.itemsCart, itemCart, props])
 
     const closePopup = () => {
         props.closePopup();
