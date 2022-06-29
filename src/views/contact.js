@@ -20,7 +20,7 @@ function Contact() {
             setInputName(user['username'])
             setInputMail(user['email'])
         }
-    }, [token, user['username'], user['email']])
+    }, [token, user])
 
     const setUsername = () => evt => {
         setInputName(evt.target.value)
@@ -31,10 +31,18 @@ function Contact() {
     const setMsm = () => evt => {
         setInputMsm(evt.target.value)
     }
+    const setErrorMsm = (resp) => {
+        setErrorMessage(resp)
+        setSuccessMessage(null)
+    }
+    const setSuccessMsm = (resp) => {
+        setErrorMessage(null)
+        setSuccessMessage(resp)
+    }
     const sendMsm = () => {
         Api.sendMsm({username: name, email: email, msm: msm})
             .then(resp =>
-                resp !== 'done' ? setErrorMessage(resp) : setSuccessMessage('Mensaje enviado'))
+                resp !== 'done' ? setErrorMsm(resp) : setSuccessMsm('Mensaje enviado'))
     }
 
     return (
