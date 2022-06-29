@@ -21,7 +21,7 @@ function Orders(props) {
         Api.get_user_id(token['token'])
             .then(resp => Api.profile(token['token'], resp['user_id']))
             .then(resp => setUser(resp['id']));
-    }, [props])
+    }, [props, token])
 
     const deleteOrder = (order) => {
         let orderMsm = document.getElementById(order.created);
@@ -102,7 +102,7 @@ function Orders(props) {
                                 <br />
                                 <input type="file" id='bill' onChange={upFile(order)} />
                             </h6>
-                            {order.bill === null ?
+                            {order.bill === '' ?
                                 <h6><FontAwesomeIcon icon={faTrashAlt} className='center' onClick={() => deleteOrder(order)} /></h6> :
                                 <h6><FontAwesomeIcon icon={faStamp} /> </h6>
                             }
