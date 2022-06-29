@@ -26,7 +26,7 @@ export const App = () => {
         if (cartCookie['cart-items']) {
             let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
             setCounter(sumCount)
-        }else{
+        } else {
             setItemsCart([])
         }
     }, [])
