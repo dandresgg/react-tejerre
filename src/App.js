@@ -22,8 +22,8 @@ export const App = () => {
     const [counter, setCounter] = useState(0)
 
     useEffect(() => {
+        setItemsCart(cartCookie['cart-items'])
         if (cartCookie['cart-items']) {
-            setItemsCart(cartCookie['cart-items'])
             let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
             setCounter(sumCount)
         }
@@ -37,7 +37,6 @@ export const App = () => {
                     x.id === item.id ? {...exist, qty: exist.qty + 1} : x
                 )
             );
-
         } else {
             setItemsCart([...itemsCart, {...item, qty: 1}]);
         }
@@ -62,7 +61,6 @@ export const App = () => {
     };
     const deleteItem = (item) => {
         const exist = itemsCart.find((x) => x.id === item.id);
-        console.log(exist)
         if (exist) {
             setItemsCart(
                 itemsCart.map((x) =>
