@@ -36,7 +36,7 @@ export const NewMachine = () => {
             <br />
             <InputSign type="text" placeholder="Nombre" id="username"
                 defaultValue="" onChange={handleName()} />
-            <h6></h6>
+            <br />
             <ButtonSign onClick={createMachine}>crear</ButtonSign>
         </div>
     )
