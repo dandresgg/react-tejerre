@@ -8,6 +8,7 @@ import {useCookies} from "react-cookie";
 
 function PartDetails(props) {
     const [cartCookie] = useCookies(['cart-items'])
+    const [token] = useCookies(['token'])
     const [itemsCart, setItemsCart] = useState([props['itemsCart']]);
     const [addActive, setAddActive] = useState(false);
     const [itemCart, setItemCart] = useState([]);
@@ -59,7 +60,7 @@ function PartDetails(props) {
             <div>
                 <h3 className='white'>Inventario: {props.part.stock} disponibles</h3>
                 <div>
-                    {props.part.stock === 0 ? null :
+                    {props.part.stock === 0 || !token['token'] ? "Para poder comprar regístrate o quizás no hay inventario" :
                         <div>
                             {props.part.stock === itemCart.qty ?
                                 <div>
