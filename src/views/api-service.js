@@ -276,6 +276,7 @@ export class Api {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,
                 },
+                body: JSON.stringify(order_id)
             })
             return await resp.json()
         } catch (error) {

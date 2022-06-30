@@ -14,6 +14,7 @@ function Replacements(props) {
     const [part, setPart] = useState([]);
     const [partDetail, setPartDetail] = useState(false);
     const [activeTab, setActiveTab] = useState('esquema');
+
     useEffect(() => {
         Api.machineList().then(resp => setComponents(resp))
     }, [])
