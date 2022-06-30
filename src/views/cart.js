@@ -5,7 +5,7 @@ import {ButtonSign, Anchor} from '../css/btn.js';
 import {useCookies} from 'react-cookie';
 
 function Cart() {
-    const [token, setToken] = useCookies(['token'])
+    const [token] = useCookies(['token'])
     useEffect(() => {
         if (token['token']) {
             window.location.href = '/cart/detalles/'

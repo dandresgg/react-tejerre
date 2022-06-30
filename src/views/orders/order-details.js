@@ -4,15 +4,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose} from "@fortawesome/free-solid-svg-icons";
 
 function OrderDetails(props) {
-    const lsDetails = ['articulo', 'Codigo', 'foto', 'precio', 'subtotal']
+    const lsDetails = ['artículo', 'Código', 'foto', 'precio', 'subtotal']
     const closePopup = () => {
         props.closePopup(false);
     }
     const [totalPrice, setTotalPrice] = useState(0)
     const [itemsPrice, setItemsPrice] = useState(0)
+    const delivery = 12000
     useEffect(() => {
         setItemsPrice(props.order.data_json.reduce((a, c) => a + c.price * c.qty, 0));
-        setTotalPrice(itemsPrice); // by now
+        setTotalPrice(itemsPrice + delivery); // by now
     }, [itemsPrice, totalPrice, props.order.data_json])
     return (
         <div className='part-details'>
@@ -37,6 +38,7 @@ function OrderDetails(props) {
                 </div>
             ))}
             <div>
+                <h2 className='white'>Envió = ${delivery}</h2>
                 <h2>Total = ${totalPrice}</h2>
             </div>
         </div>

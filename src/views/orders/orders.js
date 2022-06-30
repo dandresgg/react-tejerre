@@ -10,7 +10,7 @@ import OrderDetails from './order-details'
 function Orders(props) {
     const [token] = useCookies(['token']);
     const [orders, setOrders] = useState(props['orders']);
-    const lsOrder = ['info', 'numero orden', 'estado', 'fecha', 'enviado', 'factura', '--'];
+    const lsOrder = ['info', 'número orden', 'estado', 'fecha', 'enviado', 'factura', '--'];
     const [order, setOrder] = useState([]);
     const [partActive, setPartActive] = useState(false);
     const [file, setFile] = useState('');
