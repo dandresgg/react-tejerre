@@ -1,5 +1,5 @@
-// const REACT_APP_API_URL = "http://127.0.0.1:8000"
-const REACT_APP_API_URL = "https://knitting-api.herokuapp.com"
+const REACT_APP_API_URL = "http://127.0.0.1:8000"
+// const REACT_APP_API_URL = "https://knitting-api.herokuapp.com"
 
 export class Api {
 
@@ -308,6 +308,22 @@ export class Api {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(body)
+            })
+            return await resp.json()
+        } catch (error) {
+            return console.log(error)
+        }
+    }
+
+
+    static async blogPosts() {
+
+        try {
+            const resp = await fetch(`${REACT_APP_API_URL}/blog/posts/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
             return await resp.json()
         } catch (error) {
