@@ -1,5 +1,5 @@
-const REACT_APP_API_URL = "http://127.0.0.1:8000"
-// const REACT_APP_API_URL = "https://knitting-api.herokuapp.com"
+// const REACT_APP_API_URL = "http://127.0.0.1:8000"
+const REACT_APP_API_URL = "https://knitting-api.herokuapp.com"
 
 export class Api {
 
