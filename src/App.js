@@ -12,6 +12,7 @@ import ProfileDetails from './views/profile-detail';
 import Contact from './views/contact';
 import Cart from './views/cart';
 import Create from './views/create';
+import Blog from './views/blog';
 import {MenuOptions} from './parts/menu';
 import CartDetails from './views/cart-details';
 import {useCookies} from "react-cookie";
@@ -95,6 +96,7 @@ export const App = () => {
                         } />
                         <Route path='/contacto' caseSensitive={false} element={<Contact />} />
                         <Route path='/carro' caseSensitive={false} element={<Cart />} />
+                        <Route path='/blog' caseSensitive={false} element={<Blog />} />
                         <Route path='/crear' caseSensitive={false} element={<Create />} />
                         <Route path='/perfil/detalles' caseSensitive={false}
                             element={<ProfileDetails />} />
