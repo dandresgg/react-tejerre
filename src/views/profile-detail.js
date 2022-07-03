@@ -64,7 +64,7 @@ function ProfileDetails(props) {
             {errorMessage && <div className="alert-danger">{errorMessage}</div>}
             <div className="center w-50 mb-1">
                 {data_profile.map((item, index) => (
-                    <div className="space-a profile-data w-50 center" key={item}>
+                    <div className="space-a profile-data w-70 center" key={item}>
                         <h4>
                             <div className="d-flex space-b">
                                 <FontAwesomeIcon icon={ls_icons[index]} /> {ls_profile[index]}

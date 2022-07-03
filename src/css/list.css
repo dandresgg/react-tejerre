@@ -1,4 +1,5 @@
 .list-parts {
+  background-color: aliceblue;
   display: flex;
   justify-content: center;
   border: 3px solid;
@@ -174,6 +175,7 @@
   border-right: 1px solid lightgray;
   border-top: 1px solid #d1ccccd4;
   border-radius: 10px;
+  background-color: aliceblue;
   padding: 5px;
   box-shadow: 2px 2px 2px lightgray;
   margin-top: 2rem;
