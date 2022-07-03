@@ -57,13 +57,15 @@
   border:10px solid #282c34;
   border-top:0px solid #282c34;
   width: 80%;
-  background-color: #f5f5dc33;
+  /* background-color: #f5f5dc33; */
+  background-image: url("https://res.cloudinary.com/hwfylyqhs/image/upload/v1656853335/Sectors/g30_ds10ou.png");
   overflow: scroll;
   height: 90vh;
 }
 .container-left {
   background-color: #f5f5dc33;
   width: 20%;
+  background-image: url("https://res.cloudinary.com/hwfylyqhs/image/upload/v1656853335/Sectors/g30_ds10ou.png");
   border-left:10px solid #282c34;
   padding: 0rem 1rem;
 }
