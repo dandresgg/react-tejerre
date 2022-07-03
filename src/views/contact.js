@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {InputSign, TextareaSign, ButtonSign} from '../css/btn.js';
 import {useCookies} from "react-cookie";
 import {Api} from './api-service';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faWhatsapp} from '@fortawesome/free-brands-svg-icons';
 
 function Contact() {
     const [token] = useCookies(['token']);
@@ -20,7 +22,7 @@ function Contact() {
             setInputName(user['username'])
             setInputMail(user['email'])
         }
-    }, [token, user])
+    }, [])
 
     const setUsername = () => evt => {
         setInputName(evt.target.value)
@@ -48,6 +50,7 @@ function Contact() {
     return (
         <div className="mt-menu">
             <h1>Hola</h1>
+            <h2 className="gray">Envíanos un correo</h2>
             {errorMessage && <div className="alert-danger">{errorMessage}</div>}
             {successMessage && <div className="alert-success">{successMessage}</div>}
             <div>
@@ -73,6 +76,11 @@ function Contact() {
             <ButtonSign onClick={() => sendMsm()}>
                 Enviar Mensaje
             </ButtonSign>
+            <div>
+                <h2 className="gray">O escríbenos al WhatsApp</h2>
+                <FontAwesomeIcon icon={faWhatsapp} />
+                <h3>316 567 5153</h3>
+            </div>
         </div>
     )
 }
