@@ -11,6 +11,9 @@
 .w-50 {
   width: 50%;
 }
+.w-70 {
+  width: 70%;
+}
 .add-articles {
   border: 1px solid white;
   border-radius: 5px;
