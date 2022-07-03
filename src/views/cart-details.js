@@ -49,7 +49,8 @@ function CartDetails(props) {
         var ranNumber = Math.floor(Math.random() * 100000);
         Api.get_user_id(token['token'])
             .then(resp => Api.profile(token['token'], resp['user_id']))
-            .then(resp => Api.createOrder(token['token'], {user: resp['id'], number: ranNumber, data_json: items}))
+            .then(resp => Api.createOrder(token['token'],
+                {user: resp['id'], number: ranNumber, data_json: items}))
             .then(resp => Api.getOrders(token['token'], resp['user']))
             .then(resp => setOrders(resp))
             .then(resp => deleteItems('cart-items', {path: '/'}));

@@ -10,7 +10,7 @@ import OrderDetails from './order-details'
 function Orders(props) {
     const [token] = useCookies(['token']);
     const [orders, setOrders] = useState(props['orders']);
-    const lsOrder = ['info', 'número orden', 'estado', 'fecha', 'enviado', 'factura', '--'];
+    const lsOrder = ['info', 'número orden', 'estado', 'fecha', 'enviado', 'factura nequi', '--'];
     const [order, setOrder] = useState([]);
     const [partActive, setPartActive] = useState(false);
     const [file, setFile] = useState('');
@@ -75,7 +75,7 @@ function Orders(props) {
                 <OrderDetails order={order} closePopup={closePopup}></OrderDetails> : null
             }
             <hr className='hr-menu mt-1' />
-            <h4 className='mayus gray'>ordenes de compra</h4>
+            <h4 className='mayus'>ordenes de compra</h4>
             <h5 className='gray w-50 center mt-1'>El pago lo puedes realizar a través de nequi
                 al número <strong>316 567 5153</strong>
             </h5>
