@@ -3,6 +3,10 @@
   margin: 0 2rem 0;
   margin-top: 0.5rem;
 }
+.post:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
 .post h2 {
   background-color: black;
   color: white;
@@ -10,10 +14,25 @@
 }
 .post img{
   border: 2px solid;
-  width: 400px;
+  width: 200px;
   padding: 0.5rem;
   margin-bottom: 4px;
 }
 .tl{
   text-align: left;
+}
+.postdet {
+  background-color: lightgray;
+
+}
+.postdet img{
+  width: 600px;
+  height: 300px;
+  border: 2px solid;
+}
+.postdet p{
+  margin: 0px;
+}
+.ital {
+  font-style: italic;
 }

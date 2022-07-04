@@ -18,8 +18,8 @@ const theme = {
         hover: "#b0bec5"
     },
     add: {
-        default: '#4fc3f7',
-        hover: "#81d4fa"
+        default: 'purple',
+        hover: "#ea80fc"
     }
 }
 

@@ -25,3 +25,6 @@
 .d-flex {
   display: flex;
 }
+.s-size {
+  font-size: small;
+}

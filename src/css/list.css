@@ -58,9 +58,9 @@
 }
 .part-details{
   overflow: auto;
-  background-color: #607d8bf7;
+  background-color: gray;
   position: absolute;
-  border: 10px solid #282c34;
+  border: 10px solid;
   right: 4rem;
   left: 4rem;
   top: 1rem;
@@ -130,7 +130,6 @@
   z-index: 100;
 }
 .fix-icon-search {
-  opacity: 0.7;
   right: 4rem;
   bottom: 4rem;
   border: 3px solid #282c34;
@@ -141,7 +140,7 @@
   border-radius: 50%;
 }
 .fix-icon-search:hover{
-  opacity: 1;
+  opacity: 0.7;
   cursor: pointer;
 }
 .mt-menu{
