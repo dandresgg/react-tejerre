@@ -23,10 +23,13 @@
   width: 300px;
 }
 .photo {
-  background-color: white;
   border: 5px solid;
+  padding: 2rem;
+  margin-top: 2rem;
+  background-color: white;
 }
 .photo img{
+  width:500px;
   height: 400px;
 }
 .fa-plus{

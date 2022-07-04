@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: gray;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .App-footer {
-  background-color: #282c34;
+  background-color: gray;
   border-top:10px solid #282c34;
   display: flex;
   flex-direction: column;
@@ -80,6 +80,12 @@
 }
 .mt-1 {
   margin-top: 1rem !important;
+}
+.mt-2 {
+  margin-top: 2rem !important;
+}
+.mt-3 {
+  margin-top: 3rem !important;
 }
 .nmt-1{
   margin-top: -1rem;

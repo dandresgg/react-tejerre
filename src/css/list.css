@@ -58,7 +58,7 @@
 }
 .part-details{
   overflow: auto;
-  background-color: gray;
+  background-color: lightgray;
   position: absolute;
   border: 10px solid;
   right: 4rem;
@@ -67,6 +67,7 @@
   bottom: 1rem;
   z-index: 100;
   border-radius: 20px;
+  padding: 1rem;
 }
 .fit{
   width: fit-content;
