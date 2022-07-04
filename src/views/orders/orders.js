@@ -76,8 +76,8 @@ function Orders(props) {
             }
             <hr className='hr-menu mt-1' />
             <h4 className='mayus'>ordenes de compra</h4>
-            <h5 className='gray w-50 center mt-1'>El pago lo puedes realizar a través de nequi
-                al número <strong>316 567 5153</strong>
+            <h5 className='purple w-50 center mt-1'>El pago lo puedes realizar a través de nequi
+                al número <strong className='bold black'>316 567 5153</strong>, una vez hallas creado la orden de compra
             </h5>
             <div>
                 <div className='list-parts center bg-lightb'>

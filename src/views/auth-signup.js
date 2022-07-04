@@ -27,7 +27,7 @@ export const SingUp = () => {
     function handleError(resp) {
         console.log(resp)
         if (resp.username && resp.password) {
-            setErrorMessage('Los campos usuario y contrasena son requeridos')
+            setErrorMessage('Los campos usuario y contraseña son requeridos')
         }
         if (resp.username) {
             setErrorMessage('Usuario: ' + resp.username[0])
@@ -49,21 +49,21 @@ export const SingUp = () => {
         const digitsRegExp = /(?=.*?[0-9])/;
         const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
         if (userPass !== userPassConfirm) {
-            setErrorMessage('Contrasena no coincide')
+            setErrorMessage('Contraseña no coincide')
         } else if (userPass.length < 6) {
-            setErrorMessage('La contrasena debe tener mas de 6 caracteres')
+            setErrorMessage('La contraseña debe tener más de 6 caracteres')
         }
         else if (!uppercaseRegExp.test(userPass)) {
-            setErrorMessage('Debes poner mayusculas')
+            setErrorMessage('Debes poner mayúsculas')
         }
         else if (!lowercaseRegExp.test(userPass)) {
-            setErrorMessage('Debes poner minusculas')
+            setErrorMessage('Debes poner minúsculas')
         }
         else if (!digitsRegExp.test(userPass)) {
-            setErrorMessage('Debes poner numeros')
+            setErrorMessage('Debes poner números')
         }
         else if (!specialCharRegExp.test(userPass)) {
-            setErrorMessage('Debes poner caracteres especiales')
+            setErrorMessage('Debes poner caracteres especiales, ej. #, $, ^')
         }
         else {
             Api.singUpUser({username: userName, email: userEmail, password: userPass})
@@ -99,7 +99,7 @@ export const SingUp = () => {
             <div className="mt-btn"></div>
             <ButtonSign onClick={registerClicked}>Registrar</ButtonSign>
             <div>
-                <h4>Ya tienes cuenta?, <Anchor onClick={() => setActiveLog(true)}>Ingresar</Anchor> </h4>
+                <h4>¿Ya tienes cuenta?,<Anchor onClick={() => setActiveLog(true)}>Ingresar</Anchor> </h4>
             </div>
         </div>
     )

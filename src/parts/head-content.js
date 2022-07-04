@@ -37,7 +37,7 @@ function HeadContent(props) {
                                 </div>
                             </div>
                             <input type="number" className='search' onChange={hadleValToFind} value={valToFind}
-                                placeholder='# de referencia de repuesto' id="search-bar" />
+                                placeholder='número de referencia de repuesto' id="search-bar" />
                             <div className="close-search">
                                 <div onClick={() => setActiveSearch(false)}>
                                     <FontAwesomeIcon icon={faClose} id="close-s" />

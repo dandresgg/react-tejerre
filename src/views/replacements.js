@@ -4,6 +4,8 @@ import PartList from '../parts/parts-list.js'
 import Sectors from '../parts/sector';
 import PartDetails from '../parts/part-details';
 import {Api} from './api-service';
+import {Anchor} from '../css/btn';
+import {useNavigate} from 'react-router-dom';
 
 function Replacements(props) {
     const {itemsCart, setNewItem, removeItem, deleteItem} = props;
@@ -58,6 +60,12 @@ function Replacements(props) {
         Api.getPartFromReference(valToFind, sector['id'])
             .then(resp => resp === 'Elemento no encontrado' ? alert(resp) : clickedPart(resp))
     }
+
+    let navigate = useNavigate();
+    const goContact = () => {
+        let path = '/contacto';
+        navigate(path);
+    }
     return (
         <div className='mb-3'>
             {partDetail ?
@@ -73,6 +81,11 @@ function Replacements(props) {
                 clickedSector={clickedSector}
                 clickedTab={clickedTab}>
             </Sectors>
+            <div>
+                <h3 className='m-0 gray'>Si tienes alguna duda de algún repuesto, ve a
+                    <Anchor onClick={goContact}> contacto</Anchor>
+                </h3>
+            </div>
             {activeTab === 'esquema' ?
                 <div >
                     <img src={sector.img} alt={sector.id} className="part-img" />
