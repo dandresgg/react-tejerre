@@ -27,7 +27,7 @@ function OrderDetails(props) {
             {props.order && props.order.data_json.map(order => (
                 <div key={order.code + order.qty}>
                     {order.qty > 0 ?
-                        <div className='list-parts center white'>
+                        <div className='list-parts center'>
                             <h6>{order.description}</h6>
                             <h6>{order.code}</h6>
                             <img src={order.photo} alt="" />
