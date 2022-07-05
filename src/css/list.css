@@ -58,7 +58,7 @@
 }
 .part-details{
   overflow: auto;
-  background-color: lightgray;
+  background: linear-gradient(84deg, rgb(138 137 141) 10%, rgb(215 214 219) 50%, rgb(138 137 141) 100%);
   position: absolute;
   border: 10px solid;
   right: 4rem;
@@ -137,7 +137,7 @@
   color: #282c34;
   padding: 5px;
   background-color: #d1c4e9;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 50%;
 }
 .fix-icon-search:hover{
@@ -146,6 +146,12 @@
 }
 .mt-menu{
   margin-top: 3rem;
+}
+.font-icon{
+  font-size: 1rem;
+  background: -webkit-linear-gradient(black, gray);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .shop-c {
   opacity: 0.9;

@@ -13,7 +13,7 @@ function PostDetails(props) {
             <FontAwesomeIcon className='icon-popup' icon={faClose} onClick={() => closePopup()} />
             <h1>{post.title}</h1>
             <img src={post.img} alt="" className='postdet-img m-0' />
-            <div dangerouslySetInnerHTML={{__html: post.description}} className='s-size gray ital w-50 center' />
+            <div dangerouslySetInnerHTML={{__html: post.description}} className='s-size lightgray ital w-50 center' />
             <h6></h6>
             <div dangerouslySetInnerHTML={{__html: post.body}} />
         </div>

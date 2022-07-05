@@ -58,8 +58,8 @@ function PartDetails(props) {
                 <div className='mb-3 w-50'>
                     <h1 className='center mt-3'>{props.part.description}</h1>
                     <h2 >{numberFormat.format(props.part.price)}</h2>
-                    <h4 className='gray'>Inventario: <strong className='purple'> {props.part.stock}</strong>  disponibles</h4>
-                    <h5 className='purple'> Agrega al carrito de compra</h5>
+                    <h4 className='white'>Inventario: <strong className='purple'> {props.part.stock}</strong>  disponibles</h4>
+                    <h5 className='purple'> Agregar al carrito de compra</h5>
                     <div>
                         {props.part.stock === 0 || !token['token'] ?
                             <div>
@@ -107,9 +107,9 @@ function PartDetails(props) {
                             </div>
                         }
                     </div>
-                    <h6 className='m-0 mt-1 gray mayus'>referencia</h6>
+                    <h6 className='m-0 mt-1 white mayus'>referencia</h6>
                     <h6 className='m-0'> {props.part.reference}</h6>
-                    <h6 className='m-0 mt-1 gray mayus'>codigo</h6>
+                    <h6 className='m-0 mt-1 white mayus'>codigo</h6>
                     <h6 className='m-0'>{props.part.code}</h6>
                 </div>
             </div>

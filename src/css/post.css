@@ -13,7 +13,7 @@
   padding: 2px;
 }
 .post img{
-  border: 2px solid;
+  border: 3px solid;
   width: 200px;
   padding: 0.5rem;
   margin-bottom: 4px;
@@ -22,13 +22,12 @@
   text-align: left;
 }
 .postdet {
-  background-color: lightgray;
-
+  background: linear-gradient(84deg, rgb(138 137 141) 10%, rgb(215 214 219) 50%, rgb(138 137 141) 100%)
 }
 .postdet img{
   width: 600px;
   height: 300px;
-  border: 2px solid;
+  border: 3px solid;
 }
 .postdet p{
   margin: 0px;

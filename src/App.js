@@ -79,7 +79,7 @@ export const App = () => {
     return (
         <div className="App">
             <header className="App-header mayus bg-main">
-                <h3 className='bg-title-nav'>TejeRepuestos</h3>
+                <h3 className='bg-title-nav'></h3>
             </header>
             <div className="d-flex space-b">
                 <div className='container-left'>

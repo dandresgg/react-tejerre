@@ -33,6 +33,7 @@ export const MenuOptions = (props) => {
         <div className="mt-menu">
             <img src="https://res.cloudinary.com/hdiucqnlj/image/upload/v1654916305/TR4_nam9kw.png" alt=""
                 className="nav-img-icon" />
+            <h4 className="mayus font-icon">tejerepuestos</h4>
             <hr className="hr-menul mt-1" />
             <hr className="hr-menu" />
             <hr className="hr-menul" />
