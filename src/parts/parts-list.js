@@ -18,6 +18,11 @@ function PartList(props) {
     const clickedPart = part_id => {
         props.clickedPart(part_id)
     }
+    function earns(price) {
+        price = parseFloat(price)
+        var earn = price + (price * 0.5)
+        return earn
+    }
     return (
         <div className='main-img display-list'>
             <div className='center fit ' id="parts-list" >
@@ -30,7 +35,7 @@ function PartList(props) {
                                 <div className='list-parts' key={part.id}>
                                     <h6>{part.description}</h6>
                                     <h6>{part.reference}</h6>
-                                    <h6>$ {part.price}</h6>
+                                    <h6>$ {earns(part.price)}</h6>
                                     <img src={part.img} alt="" />
                                     <h6>{part.stock}</h6>
                                 </div>

@@ -46,7 +46,11 @@ function PartDetails(props) {
         setAddActive(false)
         props.deleteItem(item);
     }
-
+    function earns(price) {
+        price = parseFloat(price)
+        var earn = price + (price * 0.5)
+        return earn
+    }
 
     return (
         <div className='part-details'>
@@ -57,7 +61,7 @@ function PartDetails(props) {
                 </div>
                 <div className='mb-3 w-50'>
                     <h1 className='center mt-3'>{props.part.description}</h1>
-                    <h2 >{numberFormat.format(props.part.price)}</h2>
+                    <h2 >US {numberFormat.format(earns(props.part.price))} </h2>
                     <h4 className='gray'>Inventario: <strong className='purple'> {props.part.stock}</strong>  disponibles</h4>
                     <h5 className='purple'> Agregar al carrito de compra</h5>
                     <div>
