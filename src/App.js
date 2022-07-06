@@ -113,6 +113,7 @@ export const App = () => {
                 {content ?
                     <div className='container center'>
                         <Routes>
+                            <Route path='/' caseSensitive={false} element={<Auth />} />
                             <Route path='/perfil' caseSensitive={false} element={<Auth />} />
                             <Route path='/repuestos' caseSensitive={false} element={
                                 <Replacements itemsCart={itemsCart}
