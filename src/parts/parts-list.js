@@ -25,7 +25,7 @@ function PartList(props) {
                 <div className="ls-components" >
                     {props.parts && props.parts.map(part => {
                         return (
-                            <div key={part.code} onClick={() => clickedPart(part.id)}
+                            <div key={part.code + part.id} onClick={() => clickedPart(part.id)}
                                 className='tab-list-parts'>
                                 <div className='list-parts' key={part.id}>
                                     <h6>{part.description}</h6>

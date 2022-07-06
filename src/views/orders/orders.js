@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../css/cart.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCircleInfo, faCheck, faXmark, faTrashAlt, faStamp} from "@fortawesome/free-solid-svg-icons";
+import {faCircleInfo, faCircleCheck, faCircleXmark, faTrashAlt, faStamp} from "@fortawesome/free-solid-svg-icons";
 import {ButtonUpdate} from '../../css/btn';
 import {Api} from '../api-service';
 import {useCookies} from "react-cookie";
@@ -80,14 +80,14 @@ function Orders(props) {
                 al número <strong className='bold black'>316 567 5153</strong>, una vez hallas creado la orden de compra
             </h5>
             <div>
-                <div className='list-parts center bg-lightb'>
+                <div className='list-parts center bg-lightb ls-cart'>
                     {lsOrder.map(ls => (
                         <h6 className='white mayus' key={ls} >{ls}</h6>
                     ))}
                 </div>
                 {orders.map ? orders.map((order, index) => (
                     <div key={index}>
-                        <div key={order.number} className='list-parts center d-flex space-a'>
+                        <div key={order.number} className='list-parts center d-flex space-a ls-cart'>
                             <h6><FontAwesomeIcon
                                 icon={faCircleInfo}
                                 className='center'
@@ -96,7 +96,7 @@ function Orders(props) {
                             <h6 className='center' >{order.state}</h6>
                             <h6 className='center'>{order.created}</h6>
                             <h6>
-                                <FontAwesomeIcon icon={order.send ? faCheck : faXmark} className='center' />
+                                <FontAwesomeIcon icon={order.send ? faCircleCheck : faCircleXmark} className='center' />
                             </h6>                             <h6 className='center'>
                                 <label htmlFor="bill">{order.bill ? order.bill : 'Adjuntar factura'}</label>
                                 <br />

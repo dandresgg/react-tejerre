@@ -51,14 +51,14 @@ function PartDetails(props) {
     return (
         <div className='part-details'>
             <FontAwesomeIcon className='icon-popup' icon={faClose} onClick={() => closePopup()} />
-            <div className='d-flex center space-a'>
+            <div className='d-flex center space-a f-wrap'>
                 <div className='photo w-50'>
                     <img src={props.part.photo} alt="" />
                 </div>
                 <div className='mb-3 w-50'>
                     <h1 className='center mt-3'>{props.part.description}</h1>
                     <h2 >{numberFormat.format(props.part.price)}</h2>
-                    <h4 className='white'>Inventario: <strong className='purple'> {props.part.stock}</strong>  disponibles</h4>
+                    <h4 className='gray'>Inventario: <strong className='purple'> {props.part.stock}</strong>  disponibles</h4>
                     <h5 className='purple'> Agregar al carrito de compra</h5>
                     <div>
                         {props.part.stock === 0 || !token['token'] ?
@@ -75,12 +75,12 @@ function PartDetails(props) {
                                         {!addActive || itemCart.qty < 1 ?
                                             <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
                                             <div className='d-flex center space-b w-300 add-articles'>
-                                                <FontAwesomeIcon icon={faTrash} className='center white'
+                                                <FontAwesomeIcon icon={faTrash} className='center gray'
                                                     onClick={() => deleteItem(props.part)} />
-                                                <h4 className='white'>Cantidad: </h4>
-                                                <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
+                                                <h4 className='gray'>Cantidad: </h4>
+                                                <h4 className='gray ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
                                                 <FontAwesomeIcon icon={faSubtract}
-                                                    className='center white'
+                                                    className='center gray'
                                                     onClick={() => removeItem(props.part)} />
                                             </div>
                                         }
@@ -90,16 +90,16 @@ function PartDetails(props) {
                                         {!addActive || itemCart.qty < 1 ?
                                             <ButtonAdd onClick={() => setNewItem(props.part)}>agregar</ButtonAdd> :
                                             <div className='d-flex center space-b w-300 add-articles'>
-                                                <FontAwesomeIcon icon={faTrash} className='center white'
+                                                <FontAwesomeIcon icon={faTrash} className='center gray'
                                                     onClick={() => deleteItem(props.part)} />
-                                                <h4 className='white'>Cantidad: </h4>
-                                                <h4 className='white ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
+                                                <h4 className='gray'>Cantidad: </h4>
+                                                <h4 className='gray ml-1'>{!itemCart.qty ? 0 : itemCart.qty}</h4>
                                                 <FontAwesomeIcon icon={faSubtract}
-                                                    className='center white'
+                                                    className='center gray'
                                                     onClick={() => removeItem(props.part)} />
                                                 <FontAwesomeIcon icon={faAdd}
                                                     onClick={() => setNewItem(props.part)}
-                                                    className='center white' />
+                                                    className='center gray' />
                                             </div>
                                         }
                                     </div>
@@ -107,9 +107,9 @@ function PartDetails(props) {
                             </div>
                         }
                     </div>
-                    <h6 className='m-0 mt-1 white mayus'>referencia</h6>
+                    <h6 className='m-0 mt-1 gray mayus'>referencia</h6>
                     <h6 className='m-0'> {props.part.reference}</h6>
-                    <h6 className='m-0 mt-1 white mayus'>codigo</h6>
+                    <h6 className='m-0 mt-1 gray mayus'>codigo</h6>
                     <h6 className='m-0'>{props.part.code}</h6>
                 </div>
             </div>

@@ -19,7 +19,7 @@ function OrderDetails(props) {
         <div className='part-details'>
             <FontAwesomeIcon className='icon-popup' icon={faClose} onClick={() => closePopup()} />
             <h1>Orden de compra # {props.order.number}</h1>
-            <div className='list-parts center bg-lightb mayus'>
+            <div className='list-parts center bg-lightb mayus ls-cart'>
                 {lsDetails.map((ls, index) => (
                     <h6 className='white' key={ls + index}>{ls}</h6>
                 ))}
@@ -27,7 +27,7 @@ function OrderDetails(props) {
             {props.order && props.order.data_json.map(order => (
                 <div key={order.code + order.qty}>
                     {order.qty > 0 ?
-                        <div className='list-parts center'>
+                        <div className='list-parts center ls-cart'>
                             <h6>{order.description}</h6>
                             <h6>{order.code}</h6>
                             <img src={order.photo} alt="" />
@@ -38,7 +38,7 @@ function OrderDetails(props) {
                 </div>
             ))}
             <div>
-                <h2 className='white'>Envió = ${delivery}</h2>
+                <h2 className='gray'>Envió = ${delivery}</h2>
                 <h2>Total = ${totalPrice}</h2>
             </div>
         </div>
