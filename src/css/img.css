@@ -81,10 +81,15 @@
 }
 .fa-xmark{
   font-size: large;
+  border: 2px solid;
+  padding: 4px;
+  border-radius: 50%;
+  width: 20px;
+  background-color: purple;
 }
 .fa-trash-can{
   font-size: large;
-  color: darkgray;
+  color: gray;
 }
 .fa-trash-can:hover{
   opacity: 0.7;
@@ -97,9 +102,95 @@
   border: 2px solid black;
   border-radius: 50%;
   padding: 6px;
-  background-color: #d1c4e9;
+  background-color: purple;
 }
 .fa-whatsapp {
   font-size: 3rem;
   color: green;
+}
+.fa-bars {
+  visibility: hidden;
+}
+.fa-circle-xmark {
+  font-size: large;
+  color: red;
+}
+.fa-circle-check {
+  font-size: large;
+  color: green;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .part-img {
+    width: 90vh;
+  }
+  .photo img{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .fa-xmark{
+    top: 1.5rem;
+    right: 5rem;
+  }
+  .fa-bars {
+    visibility: visible;
+    font-size: large;
+    position: absolute;
+    right: 1rem;
+    bottom: 3rem;
+    z-index: 200;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: lightgray;
+    border: 3px solid;
+    color: purple;
+  }
+
+  .fa-bars:hover {
+    opacity: 0.7;
+  }
+}
+
+@media only screen and (max-width: 644px) {
+  .fa-xmark{
+    right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .photo img{
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .photo img{
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .photo img{
+    width: 220px;
+    height: 220px;
+  }
+}
+
+
+@media only screen and (max-width: 350px) {
+  .photo img{
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .photo img{
+    width: 190px;
+    height: 190px;
+  }
 }

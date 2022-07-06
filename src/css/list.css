@@ -144,8 +144,8 @@
   opacity: 0.7;
   cursor: pointer;
 }
-.mt-menu{
-  margin-top: 3rem;
+.mt-menu {
+  margin-top: 2rem;
 }
 .font-icon{
   font-size: 1rem;
@@ -197,4 +197,211 @@
 }
 .mb-1 {
   margin-bottom: 1rem;
+}
+@media only screen and (max-width: 644px) {
+  .list-parts-cart h6{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 644px) {
+  .part-details {
+    left: 1rem;
+    right: 1rem;
+  }
+  .list-parts-cart {
+    width: 90vh;
+  }
+  .list-parts-cart h6{
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 585px) {
+  .list-parts-cart {
+    width: 80vh;
+  }
+  .list-parts-cart h6{
+    width: 50px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .list-parts h6{
+    width: 85px;
+    font-size: 10px;
+  }
+  .list-parts {
+    width: fit-content;
+  }
+  .ls-cart{
+    width: 80vh !important;
+  }
+}
+
+
+@media only screen and (max-width: 530px) {
+  .ls-cart{
+    width: 70vh !important;
+  }
+  .list-parts-cart {
+    width: 70vh;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .list-parts input{
+    font-size: 6px;
+  }
+  .list-parts h6{
+    width: 75px;
+    font-size: 9px;
+  }
+  .iQgIZZ{
+    font-size: x-small !important;
+  }
+  .YfNa{
+    font-size: x-small !important;
+  }
+  .list-parts-cart img{
+    width: 10vh;
+    height: 8vh;
+  }
+}
+
+@media only screen and (max-width: 465px) {
+  .ls-cart{
+    width: 60vh !important;
+  }
+  .list-parts-cart {
+    width: 60vh;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .list-parts h6{
+    width: 65px;
+    font-size: 8px;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .list-parts h6{
+    width: 55px;
+    font-size: 8px;
+  }
+  .list-parts img{
+    width: 10vh;
+    height: 7vh;
+  }
+  .ls-cart{
+    width: 55vh !important;
+  }
+  .list-parts-cart {
+    width: 55vh;
+  }
+  .list-parts-cart h6{
+    font-size: 7px;
+    width: 40px;
+  }
+}
+
+@media only screen and (max-width: 385px) {
+  .list-parts img{
+    width: 9vh;
+    height: 6vh;
+  }
+  .ls-cart{
+    width: 50vh !important;
+  }
+  .list-parts-cart {
+    width: 50vh;
+  }
+  .list-parts-cart h6{
+    font-size: 7px;
+    width: 30px;
+  }
+
+}
+
+@media only screen and (max-width: 375px) {
+  .search {
+    width: 55%;
+  font-size: 9px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .list-parts h6{
+    width: 50px;
+    font-size: 7px;
+  }
+  .list-parts img{
+    width: 9vh;
+    height: 6vh;
+  }
+  .iQgIZZ{
+    width: 50% !important;
+    padding: 10px !important;
+  }
+  .YfNa{
+    padding: 0 !important;
+    width: 50% !important;
+  }
+  .search {
+    width: 45%;
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .fix-icon-search {
+    top: 3rem;
+  }
+  .mt-menu {
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .fix-icon-search {
+    right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .w-100{
+    width: 80%;
+  }
+  .list-parts img{
+    width: 8vh;
+    height: 5vh;
+  }
+  .ls-cart{
+    width: 45vh !important;
+  }
+  .list-parts-cart {
+    width: 45vh;
+  }
+  .list-parts-cart h6{
+    font-size: 6px;
+    width: 25px;
+  }
+
+}
+
+
+@media only screen and (max-width: 330px) {
+  .list-parts img{
+    width: 8vh;
+    height: 5vh;
+  }
+  .ls-cart{
+    width: 43vh !important;
+  }
+  .list-parts-cart {
+    width: 43vh;
+  }
+  .list-parts-cart h6{
+    font-size: 6px;
+    width: 25px;
+  }
 }

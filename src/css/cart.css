@@ -20,3 +20,16 @@
   margin-top:8px ;
   background-color: #282c34;
 }
+
+@media only screen and (max-width: 780px) {
+  .w-50 {
+    width: 100%;
+  }
+
+}
+@media only screen and (max-width: 480px) {
+  .w-70 {
+    width: 90%;
+  }
+}
+
