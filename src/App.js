@@ -16,11 +16,17 @@ import Blog from './views/blog';
 import {MenuOptions} from './parts/menu';
 import CartDetails from './views/cart-details';
 import {useCookies} from "react-cookie";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faBars} from "@fortawesome/free-solid-svg-icons";
+
 
 export const App = () => {
     const [cartCookie, setCartCookie] = useCookies(['cart-items'])
     const [itemsCart, setItemsCart] = useState([]);
     const [counter, setCounter] = useState(0)
+    const [menu, setMenu] = useState(true)
+    const [content, setContent] = useState(true)
+    const [miniScreen, setMiniScreen] = useState('not_mini');
 
     useEffect(() => {
         setItemsCart(cartCookie['cart-items'])
@@ -29,6 +35,10 @@ export const App = () => {
             setCounter(sumCount)
         } else {
             setItemsCart([])
+        }
+        const screen = window.innerWidth
+        if (screen < 1024) {
+            setMenu(false)
         }
     }, [])
 
@@ -75,43 +85,61 @@ export const App = () => {
             setCounter(sumCount)
         }
     }
+    const showMenu = () => {
+        setMenu(true);
+        setContent(false);
+        setMiniScreen('mini_screen');
+    }
 
     return (
         <div className="App">
             <header className="App-header mayus bg-main">
-                <h3 className='bg-title-nav'></h3>
+                <div className='bg-title-nav'>
+                    <FontAwesomeIcon icon={faBars} onClick={() => showMenu()} /> :
+                    <h1></h1>
+                </div>
             </header>
             <div className="d-flex space-b">
-                <div className='container-left'>
-                    <MenuOptions counter={counter} />
-                </div>
-                <div className='container center'>
-                    <Routes>
-                        <Route path='/perfil' caseSensitive={false} element={<Auth />} />
-                        <Route path='/repuestos' caseSensitive={false} element={
-                            <Replacements itemsCart={itemsCart}
-                                setNewItem={setNewItem}
-                                deleteItem={deleteItem}
-                                removeItem={removeItem} />
-                        } />
-                        <Route path='/contacto' caseSensitive={false} element={<Contact />} />
-                        <Route path='/carro' caseSensitive={false} element={<Cart />} />
-                        <Route path='/blog' caseSensitive={false} element={<Blog />} />
-                        <Route path='/crear' caseSensitive={false} element={<Create />} />
-                        <Route path='/perfil/detalles' caseSensitive={false}
-                            element={<ProfileDetails />} />
-                        <Route path='/cart/detalles' caseSensitive={false}
-                            element={
-                                <CartDetails cartCookie={cartCookie}
-                                    counter={counter}
-                                    itemsCart={itemsCart}
-                                    deleteItem={deleteItem}
+                {!menu ?
+                    <div className='container-left' id='menu-l'>
+                        <MenuOptions counter={counter} miniScreen={miniScreen}
+                            setMenu={setMenu} setContent={setContent} />
+                    </div> :
+                    <div className='container-left show' id='menu-l'>
+                        <MenuOptions counter={counter} miniScreen={miniScreen}
+                            setMenu={setMenu} setContent={setContent} />
+                    </div>
+                }
+                {content ?
+                    <div className='container center'>
+                        <Routes>
+                            <Route path='/perfil' caseSensitive={false} element={<Auth />} />
+                            <Route path='/repuestos' caseSensitive={false} element={
+                                <Replacements itemsCart={itemsCart}
                                     setNewItem={setNewItem}
+                                    deleteItem={deleteItem}
                                     removeItem={removeItem} />
-                            }
-                        />
-                    </Routes>
-                </div>
+                            } />
+                            <Route path='/contacto' caseSensitive={false} element={<Contact />} />
+                            <Route path='/carro' caseSensitive={false} element={<Cart />} />
+                            <Route path='/blog' caseSensitive={false} element={<Blog />} />
+                            <Route path='/crear' caseSensitive={false} element={<Create />} />
+                            <Route path='/perfil/detalles' caseSensitive={false}
+                                element={<ProfileDetails />} />
+                            <Route path='/cart/detalles' caseSensitive={false}
+                                element={
+                                    <CartDetails cartCookie={cartCookie}
+                                        counter={counter}
+                                        itemsCart={itemsCart}
+                                        deleteItem={deleteItem}
+                                        setNewItem={setNewItem}
+                                        removeItem={removeItem} />
+                                }
+                            />
+                        </Routes>
+                    </div> :
+                    null
+                }
             </div >
             < div className='App-footer bg-main'>
                 <h6 className='bg-title-nav m-0'>Copyright © 2022 TejeRepuestos</h6>

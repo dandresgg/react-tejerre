@@ -30,7 +30,7 @@ function Blog() {
                         <hr />
                         {posts.map(post => (
                             <div key={post.title} className='post' onClick={() => showPostDetail(post)}>
-                                <div className='d-flex space-a'>
+                                <div className='d-flex space-a f-wrap'>
                                     <img src={post.img} alt="" />
                                     <div className="tl w-50">
                                         <h2 className='m-0'>{post.title}</h2>
