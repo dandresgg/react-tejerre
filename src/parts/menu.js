@@ -29,6 +29,15 @@ export const MenuOptions = (props) => {
         icons = [faUser, faToolbox, faBlog, faAddressBook, faShoppingCart]
     }
     const [active, setActive] = useState(lsMenu[0])
+
+    const setMenu = (menu) => {
+        setActive(menu);
+        if (props.miniScreen !== 'not_mini') {
+            props.setMenu(false);
+            props.setContent(true);
+        }
+    }
+
     return (
         <div className="mt-menu">
             <img src="https://res.cloudinary.com/hdiucqnlj/image/upload/v1654916305/TR4_nam9kw.png" alt=""
@@ -43,7 +52,7 @@ export const MenuOptions = (props) => {
                         <ButtonMenu className="mayus bold"
                             key={menu + index}
                             active={active === menu}
-                            onClick={() => setActive(menu)}>
+                            onClick={() => setMenu(menu)}>
                             <div className='d-flex space-b'>
                                 {menu}
                                 {menu === 'carro' && props.counter ? <div className="purple bg-w">{props.counter}</div> : null}
