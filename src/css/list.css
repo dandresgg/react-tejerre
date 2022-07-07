@@ -198,6 +198,18 @@
 .mb-1 {
   margin-bottom: 1rem;
 }
+
+@media only screen and (max-width: 1023px) {
+  .list-parts {
+    width: 60vh;
+  }
+  .fix-icon-search {
+    top: 3rem;
+  }
+  .mt-menu {
+    margin-top: 0px;
+  }
+}
 @media only screen and (max-width: 644px) {
   .list-parts-cart h6{
     width: 90%;
@@ -234,7 +246,7 @@
     width: fit-content;
   }
   .ls-cart{
-    width: 80vh !important;
+    width: 60vh !important;
   }
 }
 
@@ -249,6 +261,9 @@
 }
 
 @media only screen and (max-width: 480px) {
+  .fix-icon-search {
+    right: 2rem;
+  }
   .list-parts input{
     font-size: 6px;
   }
@@ -270,7 +285,7 @@
 
 @media only screen and (max-width: 465px) {
   .ls-cart{
-    width: 60vh !important;
+    width: 35vh !important;
   }
   .list-parts-cart {
     width: 60vh;
@@ -294,7 +309,7 @@
     height: 7vh;
   }
   .ls-cart{
-    width: 55vh !important;
+    width: 35vh !important;
   }
   .list-parts-cart {
     width: 55vh;
@@ -305,13 +320,10 @@
   }
 }
 
-@media only screen and (max-width: 385px) {
+@media only screen and (max-width: 380px) {
   .list-parts img{
     width: 9vh;
     height: 6vh;
-  }
-  .ls-cart{
-    width: 50vh !important;
   }
   .list-parts-cart {
     width: 50vh;
@@ -324,6 +336,9 @@
 }
 
 @media only screen and (max-width: 375px) {
+  .ls-cart{
+    width: 45vh !important;
+  }
   .search {
     width: 55%;
   font-size: 9px;
@@ -352,20 +367,6 @@
     font-size: 7px;
   }
 }
-@media only screen and (max-width: 1023px) {
-  .fix-icon-search {
-    top: 3rem;
-  }
-  .mt-menu {
-    margin-top: 0px;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .fix-icon-search {
-    right: 2rem;
-  }
-}
 
 @media only screen and (max-width: 360px) {
   .w-100{
@@ -376,7 +377,7 @@
     height: 5vh;
   }
   .ls-cart{
-    width: 45vh !important;
+    width: 35vh !important;
   }
   .list-parts-cart {
     width: 45vh;
@@ -387,7 +388,6 @@
   }
 
 }
-
 
 @media only screen and (max-width: 330px) {
   .list-parts img{
@@ -404,4 +404,11 @@
     font-size: 6px;
     width: 25px;
   }
+}
+
+
+@media only screen and (max-width: 290px) {
+  .ls-cart {
+    width: 33vh !important;
+  } 
 }

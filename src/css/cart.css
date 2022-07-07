@@ -15,13 +15,16 @@
   width: 70%;
 }
 .add-articles {
-  border: 1px solid white;
+  border: 2px solid gray;
   border-radius: 5px;
   margin-top:8px ;
-  background-color: #282c34;
+  background-color: white;
 }
 
 @media only screen and (max-width: 780px) {
+  .add-articles {
+    width: auto;
+  }
   .w-50 {
     width: 100%;
   }
