@@ -87,7 +87,7 @@ function PartDetails(props) {
                                 <h5 className='w-50 center'>
                                     Para poder comprar regístrate o quizás no hay inventario
                                 </h5>
-                                <h6 className='orange w-50'>
+                                <h6 className='orange w-50 center'>
                                     Puedes hacer compra internacional en caso de que no halla inventario local,
                                     esta puede tardar entre 30 y 45 días en llegar.
                                     Ve a <Anchor onClick={goContact}> contacto</Anchor> para más información
