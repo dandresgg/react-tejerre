@@ -117,8 +117,21 @@
     display: none;
     width: 100%;
     height: 100vh;
-    border-right:10px solid ;
+    border-right:10px solid #282c34;
   }
+  .show-menu {
+    display: block;
+    animation: fadeIn .5s;
+  }
+  @-webkit-keyframes fadeIn {
+    from { transform: translatex(-100%); }
+      to { transform: translate(0%); }
+    }
+  @keyframes fadeIn {
+    from { transform: translatex(-100%); }
+      to { transform: translate(0%); }
+  }
+
   .container {
     width: 100%;
     padding: 1rem;

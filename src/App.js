@@ -2,6 +2,7 @@ import './App.css';
 import './css/btn.css';
 import React, {useState, useEffect} from 'react';
 import './css/img.css'
+import './css/loading.css'
 import {
     Routes,
     Route,
@@ -27,8 +28,13 @@ export const App = () => {
     const [menu, setMenu] = useState(true)
     const [content, setContent] = useState(true)
     const [miniScreen, setMiniScreen] = useState('not_mini');
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
         setItemsCart(cartCookie['cart-items'])
         if (cartCookie['cart-items']) {
             let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
@@ -95,53 +101,64 @@ export const App = () => {
         <div className="App">
             <header className="App-header mayus bg-main">
                 <div className='bg-title-nav'>
-                    <FontAwesomeIcon icon={faBars} onClick={() => showMenu()} /> :
+                    <FontAwesomeIcon icon={faBars} onClick={() => showMenu()} />
                     <h1></h1>
                 </div>
             </header>
-            <div className="d-flex space-b">
-                {!menu ?
-                    <div className='container-left' id='menu-l'>
-                        <MenuOptions counter={counter} miniScreen={miniScreen}
-                            setMenu={setMenu} setContent={setContent} />
-                    </div> :
-                    <div className='container-left show' id='menu-l'>
-                        <MenuOptions counter={counter} miniScreen={miniScreen}
-                            setMenu={setMenu} setContent={setContent} />
+            {loading ?
+                <div>
+                    <div className="loader-container">
+                        <div>
+                            <div className="spinner center"></div>
+                            <h1 className='white center'>cargando</h1>
+                        </div>
                     </div>
-                }
-                {content ?
-                    <div className='container center'>
-                        <Routes>
-                            <Route path='/' caseSensitive={false} element={<Auth />} />
-                            <Route path='/perfil' caseSensitive={false} element={<Auth />} />
-                            <Route path='/repuestos' caseSensitive={false} element={
-                                <Replacements itemsCart={itemsCart}
-                                    setNewItem={setNewItem}
-                                    deleteItem={deleteItem}
-                                    removeItem={removeItem} />
-                            } />
-                            <Route path='/contacto' caseSensitive={false} element={<Contact />} />
-                            <Route path='/carro' caseSensitive={false} element={<Cart />} />
-                            <Route path='/blog' caseSensitive={false} element={<Blog />} />
-                            <Route path='/crear' caseSensitive={false} element={<Create />} />
-                            <Route path='/perfil/detalles' caseSensitive={false}
-                                element={<ProfileDetails />} />
-                            <Route path='/cart/detalles' caseSensitive={false}
-                                element={
-                                    <CartDetails cartCookie={cartCookie}
-                                        counter={counter}
-                                        itemsCart={itemsCart}
-                                        deleteItem={deleteItem}
+                </div>
+                :
+                <div className="d-flex space-b">
+                    {!menu ?
+                        <div className='container-left' id='menu-l'>
+                            <MenuOptions counter={counter} miniScreen={miniScreen}
+                                setMenu={setMenu} setContent={setContent} />
+                        </div> :
+                        <div className='container-left show-menu' id='menu-l'>
+                            <MenuOptions counter={counter} miniScreen={miniScreen}
+                                setMenu={setMenu} setContent={setContent} />
+                        </div>
+                    }
+                    {content ?
+                        <div className='container center'>
+                            <Routes>
+                                <Route path='/' caseSensitive={false} element={<Auth />} />
+                                <Route path='/perfil' caseSensitive={false} element={<Auth />} />
+                                <Route path='/repuestos' caseSensitive={false} element={
+                                    <Replacements itemsCart={itemsCart}
                                         setNewItem={setNewItem}
+                                        deleteItem={deleteItem}
                                         removeItem={removeItem} />
-                                }
-                            />
-                        </Routes>
-                    </div> :
-                    null
-                }
-            </div >
+                                } />
+                                <Route path='/contacto' caseSensitive={false} element={<Contact />} />
+                                <Route path='/carro' caseSensitive={false} element={<Cart />} />
+                                <Route path='/blog' caseSensitive={false} element={<Blog />} />
+                                <Route path='/crear' caseSensitive={false} element={<Create />} />
+                                <Route path='/perfil/detalles' caseSensitive={false}
+                                    element={<ProfileDetails />} />
+                                <Route path='/cart/detalles' caseSensitive={false}
+                                    element={
+                                        <CartDetails cartCookie={cartCookie}
+                                            counter={counter}
+                                            itemsCart={itemsCart}
+                                            deleteItem={deleteItem}
+                                            setNewItem={setNewItem}
+                                            removeItem={removeItem} />
+                                    }
+                                />
+                            </Routes>
+                        </div> :
+                        null
+                    }
+                </div >
+            }
             < div className='App-footer bg-main'>
                 <h6 className='bg-title-nav m-0'>Copyright © 2022 TejeRepuestos</h6>
             </div>
