@@ -57,7 +57,7 @@ function PartDetails(props) {
         price = parseFloat(price)
         trm = Number(trm.replace(/[^0-9.-]+/g, ""));
         let earn = price + (price * 0.5)
-        return earn * price
+        return earn * trm
     }
 
     let navigate = useNavigate();
