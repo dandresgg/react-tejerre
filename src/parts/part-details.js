@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faTrash, faAdd, faSubtract} from '@fortawesome/free-solid-svg-icons';
 import {ButtonAdd} from '../css/btn.js';
 import {useCookies} from "react-cookie";
+import {useNavigate} from 'react-router-dom';
+import {Anchor} from '../css/btn';
 
 function PartDetails(props) {
     const [cartCookie] = useCookies(['cart-items'])
@@ -48,10 +50,21 @@ function PartDetails(props) {
     }
     function earns(price) {
         price = parseFloat(price)
-        var earn = price + (price * 0.5)
+        let earn = price + (price * 0.5)
         return earn
     }
+    function earnsCol(price, trm) {
+        price = parseFloat(price)
+        trm = Number(trm.replace(/[^0-9.-]+/g, ""));
+        let earn = price + (price * 0.5)
+        return earn * price
+    }
 
+    let navigate = useNavigate();
+    const goContact = () => {
+        let path = '/contacto';
+        navigate(path);
+    }
     return (
         <div className='part-details'>
             <FontAwesomeIcon className='icon-popup' icon={faClose} onClick={() => closePopup()} />
@@ -62,7 +75,14 @@ function PartDetails(props) {
                 <div className='mb-3 w-50'>
                     <h1 className='center mt-3'>{props.part.description}</h1>
                     <h2 >US {numberFormat.format(earns(props.part.price))} </h2>
-                    <h4 className='gray'>Inventario: <strong className='purple'> {props.part.stock}</strong>  disponibles</h4>
+                    <h5>TRM ${props.trm}</h5>
+                    <h5 className='green'>COL {numberFormat.format(earnsCol(props.part.price, props.trm))} </h5>
+                    <h4 className='gray'>
+                        Inventario:
+                        <strong className='purple'>
+                            {props.part.stock}
+                        </strong>  disponibles
+                    </h4>
                     <h5 className='purple'> Agregar al carrito de compra</h5>
                     <div>
                         {props.part.stock === 0 || !token['token'] ?
@@ -70,6 +90,11 @@ function PartDetails(props) {
                                 <h5 className='w-50 center'>
                                     Para poder comprar regístrate o quizás no hay inventario
                                 </h5>
+                                <h6 className='orange'>
+                                    Puedes hacer compra internacional en caso de que no halla inventario local,
+                                    esta puede tardar entre 30 y 45 días en llegar.
+                                    Ve a <Anchor onClick={goContact}> contacto</Anchor> para más información
+                                </h6>
                             </div>
                             :
                             <div>

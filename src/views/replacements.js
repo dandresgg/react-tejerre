@@ -16,9 +16,11 @@ function Replacements(props) {
     const [part, setPart] = useState([]);
     const [partDetail, setPartDetail] = useState(false);
     const [activeTab, setActiveTab] = useState('esquema');
+    const [trm, setTrm] = useState(0)
 
     useEffect(() => {
         Api.machineList().then(resp => setComponents(resp))
+        Api.get_trm().then(resp => setTrm(resp))
     }, [])
 
     const setComponents = resp => {
@@ -73,6 +75,7 @@ function Replacements(props) {
                     itemsCart={itemsCart}
                     setNewItem={setNewItem}
                     deleteItem={deleteItem}
+                    trm={trm}
                     removeItem={removeItem}>
                 </PartDetails> : null
             }
