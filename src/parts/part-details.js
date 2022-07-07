@@ -78,10 +78,7 @@ function PartDetails(props) {
                     <h5>TRM ${props.trm}</h5>
                     <h5 className='green'>COL {numberFormat.format(earnsCol(props.part.price, props.trm))} </h5>
                     <h4 className='gray'>
-                        Inventario:
-                        <strong className='purple'>
-                            {props.part.stock}
-                        </strong>  disponibles
+                        Inventario: <strong className='purple'> {props.part.stock}</strong> disponibles
                     </h4>
                     <h5 className='purple'> Agregar al carrito de compra</h5>
                     <div>
@@ -90,7 +87,7 @@ function PartDetails(props) {
                                 <h5 className='w-50 center'>
                                     Para poder comprar regístrate o quizás no hay inventario
                                 </h5>
-                                <h6 className='orange'>
+                                <h6 className='orange w-50'>
                                     Puedes hacer compra internacional en caso de que no halla inventario local,
                                     esta puede tardar entre 30 y 45 días en llegar.
                                     Ve a <Anchor onClick={goContact}> contacto</Anchor> para más información
