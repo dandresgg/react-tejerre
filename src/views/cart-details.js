@@ -14,15 +14,21 @@ function CartDetails(props) {
     const [orders, setOrders] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
+    const [subTotalPrice, setSubTotalPrice] = useState(0);
     const [itemsPrice, setItemsPrice] = useState(0);
     const [activePay, setActivePay] = useState(false);
     const lsDetails = ['artículo', 'Código', 'foto', 'precio', 'subtotal', '--'];
+    const options = {style: 'currency', currency: 'MXN'};
+    const numberFormat = new Intl.NumberFormat('es-MX', options);
     const delivery = 12000;
+    const [trm, setTrm] = useState(0)
 
     useEffect(() => {
         if (items) {
+            Api.get_trm().then(resp => setTrm(Number(resp.replace(/[^0-9.-]+/g, ""))))
             setItemsPrice(items.reduce((a, c) => a + c.price * c.qty, 0));
-            setTotalPrice(itemsPrice + delivery); // by now
+            setSubTotalPrice(itemsPrice * trm); // by now
+            setTotalPrice(subTotalPrice + delivery); // by now
             if (itemsPrice === 0 && props.counter === 0) {
                 setActiveBuyOptions(false)
             } else {
@@ -34,7 +40,7 @@ function CartDetails(props) {
             .then(resp => Api.getOrders(token['token'], resp['id'])
                 .then(resp => resp !== 'false' ? setOrders(resp) : console.log(resp))
             )
-    }, [itemsPrice, items, props.counter, token])
+    }, [itemsPrice, items, props.counter, token, trm, subTotalPrice, totalPrice])
 
     const createOrder = () => {
         Api.get_user_id(token['token'])
@@ -88,14 +94,14 @@ function CartDetails(props) {
                                     <h6>{item.description}</h6>
                                     <h6>{item.code}</h6>
                                     <img src={item.photo} alt="" />
-                                    <h6>{item.qty} x ${item.price}</h6>
+                                    <h6>{item.qty} x US ${item.price}</h6>
                                     <h6>${item.qty * item.price}</h6>
                                     <FontAwesomeIcon icon={faSubtract}
-                                        className='purple'
+                                        className='purple not-border'
                                         onClick={() => removeItem(item)} />
                                     <FontAwesomeIcon icon={faAdd}
                                         onClick={() => setNewItem(item)}
-                                        className='purple' />
+                                        className='purple not-border' />
                                     <FontAwesomeIcon icon={faTrash}
                                         onClick={() => deleteItem(item)}
                                         className='purple' />
@@ -106,8 +112,9 @@ function CartDetails(props) {
                     ))}
                     {activeBuyOptions ?
                         <div>
-                            <h4 className='gray'>Envió: ${delivery}</h4>
-                            <h4 className=''>Total: ${totalPrice}</h4>
+                            <h4 className='gray'>SubTotal: COL {numberFormat.format(subTotalPrice)}</h4>
+                            <h4 className='gray'>Envió: COL {numberFormat.format(delivery)}</h4>
+                            <h4 className=''>Total: COL {numberFormat.format(totalPrice)}</h4>
                             <div>
                                 {errorMessage && <div className="alert-danger">{errorMessage}</div>}
                                 {!activePay ?
