@@ -51,13 +51,16 @@ export const App = () => {
     const setNewItem = (item) => {
         const exist = itemsCart.find((x) => x.id === item.id);
         if (exist) {
+            exist.qty = exist.qty + 1
             setItemsCart(
                 itemsCart.map((x) =>
-                    x.id === item.id ? {...exist, qty: exist.qty + 1} : x
+                    x.id === item.id ? {...exist} : x
                 )
             );
-        } else {
-            setItemsCart([...itemsCart, {...item, qty: 1}]);
+        }
+        else {
+            item.qty = 1
+            setItemsCart([...itemsCart, {...item}]);
         }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
         let sumCount = itemsCart.reduce((a, c) => a + c.qty, 0)
@@ -69,9 +72,10 @@ export const App = () => {
         if (exist.qty === 0) {
             setItemsCart(itemsCart.filter((x) => x.id === item.id));
         } else {
+            exist.qty = exist.qty - 1
             setItemsCart(
                 itemsCart.map((x) =>
-                    x.id === item.id ? {...exist, qty: exist.qty - 1} : x)
+                    x.id === item.id ? {...exist} : x)
             );
         }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
@@ -81,9 +85,10 @@ export const App = () => {
     const deleteItem = (item) => {
         const exist = itemsCart.find((x) => x.id === item.id);
         if (exist) {
+            exist.qty = 0
             setItemsCart(
                 itemsCart.map((x) =>
-                    x.id === item.id ? {...exist, qty: exist.qty - exist.qty} : x
+                    x.id === item.id ? {...exist} : x
                 )
             );
             setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
@@ -101,6 +106,10 @@ export const App = () => {
         <div className="App">
             <header className="App-header mayus bg-main">
                 <div className='bg-title-nav'>
+                    {counter > 0 ?
+                        <h6 className='counter'>{counter}</h6> :
+                        null
+                    }
                     <FontAwesomeIcon icon={faBars} onClick={() => showMenu()} />
                     <h1></h1>
                 </div>
