@@ -60,7 +60,8 @@ function Replacements(props) {
     }
     const getPart = (valToFind) => {
         Api.getPartFromReference(valToFind, sector['id'])
-            .then(resp => resp === 'Elemento no encontrado' ? alert(resp) : clickedPart(resp))
+            .then(resp => resp === 'Elemento no encontrado' || !resp ?
+                alert('Elemento no encontrado') : clickedPart(resp))
     }
 
     let navigate = useNavigate();
