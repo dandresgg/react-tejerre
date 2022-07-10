@@ -62,6 +62,15 @@ export const App = () => {
             item.qty = 1
             setItemsCart([...itemsCart, {...item}]);
         }
+
+        if (exist.qty === 0) {
+            exist.qty = 1
+            setItemsCart(
+                itemsCart.map((x) =>
+                    x.id === item.id ? {...exist} : x
+                )
+            );
+        }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
         let sumCount = itemsCart.reduce((a, c) => a + c.qty, 0)
         setCounter(sumCount)
