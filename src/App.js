@@ -58,18 +58,17 @@ export const App = () => {
                 )
             );
         }
-        else {
-            item.qty = 1
-            setItemsCart([...itemsCart, {...item}]);
-        }
-
-        if (exist.qty === 0) {
+        else if (exist.qty === 0) {
             exist.qty = 1
             setItemsCart(
                 itemsCart.map((x) =>
                     x.id === item.id ? {...exist} : x
                 )
             );
+        }
+        else {
+            item.qty = 1
+            setItemsCart([...itemsCart, {...item}]);
         }
         setCartCookie('cart-items', itemsCart, {sameSite: 'none', secure: true, path: '/'})
         let sumCount = itemsCart.reduce((a, c) => a + c.qty, 0)
