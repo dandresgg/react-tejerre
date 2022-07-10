@@ -272,12 +272,12 @@
     font-size: 9px;
   }
   .iQgIZZ{
-    font-size: x-small !important;
-    padding: 5px !important;
+    width: 50% !important;
+    font-size: xx-small !important;
   }
   .YfNa{
-    font-size: x-small !important;
-    padding: 5px !important;
+    font-size: xx-small !important;
+    width: 50% !important;
   }
   .list-parts-cart img{
     width: 10vh;
@@ -357,12 +357,10 @@
     height: 6vh;
   }
   .iQgIZZ{
-    width: 50% !important;
-    padding: 10px !important;
+    padding: 0px !important;
   }
   .YfNa{
     padding: 0 !important;
-    width: 50% !important;
   }
   .search {
     width: 45%;
