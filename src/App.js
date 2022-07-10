@@ -58,14 +58,6 @@ export const App = () => {
                 )
             );
         }
-        else if (exist.qty === 0) {
-            exist.qty = 1
-            setItemsCart(
-                itemsCart.map((x) =>
-                    x.id === item.id ? {...exist} : x
-                )
-            );
-        }
         else {
             item.qty = 1
             setItemsCart([...itemsCart, {...item}]);
