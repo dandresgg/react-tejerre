@@ -19,6 +19,7 @@ import CartDetails from './views/cart-details';
 import {useCookies} from "react-cookie";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
+import {useFetch} from './views/fetch';
 
 
 export const App = () => {
@@ -28,13 +29,10 @@ export const App = () => {
     const [menu, setMenu] = useState(true)
     const [content, setContent] = useState(true)
     const [miniScreen, setMiniScreen] = useState('not_mini');
-    const [loading, setLoading] = useState(false)
+    const [data, loading, error] = useFetch();
+
 
     useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000);
         setItemsCart(cartCookie['cart-items'])
         if (cartCookie['cart-items']) {
             let sumCount = cartCookie['cart-items'].reduce((a, c) => a + c.qty, 0)
@@ -101,7 +99,7 @@ export const App = () => {
         setContent(false);
         setMiniScreen('mini_screen');
     }
-
+    if (error) return <div>Error cargando {error}</div>
     return (
         <div className="App">
             <header className="App-header mayus bg-main">
